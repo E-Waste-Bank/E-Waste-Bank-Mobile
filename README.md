@@ -11,7 +11,7 @@ Anda dapat mengunduh apk kami di `(soon)`
 ## 🌏 Alur Pengintegrasian dengan Web Service 🌏
 Berikut ini adalah langkah-langkah yang akan dilakukan untuk mengintegrasikan aplikasi dengan server web.
 1. Mengimplementasikan sebuah wrapper class dengan menggunakan library http dan map untuk mendukung penggunaan cookie-based authentication pada aplikasi. 
-2. Kemudian, mengimplementasikan REST API endpoint pada Django (views.py) yang sudah dibuat sebelumnya dengan menggunakan JsonResponse atau Django JSON Serializer.
+2. Kemudian, mengimplementasikan REST API pada Django (views.py) yang sudah dibuat sebelumnya dengan menggunakan JsonResponse atau Django JSON Serializer.
 3. Selanjutnya, integrasi dilakukan dengan mengimplementasikan desain front-end untuk aplikasi berdasarkan desain web.
 4. Kemudian, melakukan integrasi antara front-end dengan back-end dengan menggunakan konsep asynchronous HTTP.
 
