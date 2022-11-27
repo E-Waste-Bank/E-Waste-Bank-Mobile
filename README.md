@@ -6,10 +6,14 @@
 > pada Semester Gasal, Tahun Ajaran 2022/2023.
 
 ## 📱 Tautan APK 📱
-You can download our apk on `(soon)`
+Anda dapat mengunduh apk kami di `(soon)`
 
 ## 🌏 Alur Pengintegrasian dengan Web Service 🌏
-Integrasi dilakukan dengan mengimplementasikan sebuah wrapper class dengan menggunakan library http dan map untuk mendukung penggunaan cookie-based authentication pada aplikasi. Kemudian, integrasi dilakukan dengan mengimplementasikan REST API endpoint pada Django (views.py) yang sudah dibuat sebelumnya dengan menggunakan JsonResponse atau Django JSON Serializer. Selanjutnya, integrasi dilakukan dengan mengimplementasikan desain front-end untuk aplikasi berdasarkan desain web, serta melakukan integrasi antara front-end dengan back-end dengan menggunakan konsep asynchronous HTTP.
+Berikut ini adalah langkah-langkah yang akan dilakukan untuk mengintegrasikan aplikasi dengan server web.
+1. Mengimplementasikan sebuah wrapper class dengan menggunakan library http dan map untuk mendukung penggunaan cookie-based authentication pada aplikasi. 
+2. Kemudian, mengimplementasikan REST API endpoint pada Django (views.py) yang sudah dibuat sebelumnya dengan menggunakan JsonResponse atau Django JSON Serializer.
+3. Selanjutnya, integrasi dilakukan dengan mengimplementasikan desain front-end untuk aplikasi berdasarkan desain web.
+4. Kemudian, melakukan integrasi antara front-end dengan back-end dengan menggunakan konsep asynchronous HTTP.
 
 ## 👩🏻‍💻 Pengembang Aplikasi 🧑🏻‍💻
 - [Hugo Sulaiman Setiawan](https://github.com/hugo-setiawan) (2106707315)
