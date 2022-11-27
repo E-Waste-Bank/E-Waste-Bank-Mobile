@@ -6,7 +6,7 @@
 > pada Semester Gasal, Tahun Ajaran 2022/2023.
 
 ## 📱 Tautan APK 📱
-Anda dapat mengunduh apk kami di `(soon)`
+Anda dapat mengunduh apk kami di `https://install.appcenter.ms/orgs/e-waste-bank/apps/e_waste_bank_mobile/distribution_groups/public`
 
 ## 🌏 Alur Pengintegrasian dengan Web Service 🌏
 Berikut ini adalah langkah-langkah yang akan dilakukan untuk mengintegrasikan aplikasi dengan server web.
