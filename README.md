@@ -1,4 +1,6 @@
 # 🍃 E-Waste Bank 🍃
+![Staging](https://github.com/github/docs/actions/workflows/staging.yml/badge.svg) ![Pre-release](https://github.com/github/docs/actions/workflows/pre-release.yml/badge.svg) ![Release](https://github.com/github/docs/actions/workflows/release.yml/badge.svg) [![Build status](https://build.appcenter.ms/v0.1/apps/f8e0058f-2ee0-48a6-a041-87b3d1ab2b71/branches/main/badge)](https://appcenter.ms)
+
 ## Mobile (flutter)
 > Proyek ini dibuat untuk memenuhi tugas Proyek Akhir Semester (PAS)
 > pada mata kuliah Pemrograman Berbasis Platform (CSGE602022) yang
