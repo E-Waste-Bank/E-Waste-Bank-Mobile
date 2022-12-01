@@ -47,8 +47,7 @@ Fitur ini akan menampilkan informasi tentang tips dan tricks mengenai pengelolaa
 
 ### 💰 Manage Keuangan
 ### 💸 User - [Hugo Sulaiman Setiawan](https://github.com/hugo-setiawan)
-
-Fitur ini akan menampilkan
+Fitur ini akan menampilkan jumlah saldo yang dimiliki user (yang akan diatur lebih lanjut oleh *admin* pada modul Manage Keuangan - Admin). Selain itu, fitur ini juga memungkinkan pengguna untuk me-*request* penarikan uang melalui fitur *Cashout*. *Request* penarikan uang yang dibuat akan disimpan pada server, kemudian *admin* akan menyetujui penarikan tersebut. 
     
 ### 💸 Admin - [Raditya Aditama](https://github.com/ratama98)
 
