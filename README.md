@@ -46,11 +46,11 @@ Fitur ini akan menampilkan
 Fitur ini akan menampilkan informasi tentang tips dan tricks mengenai pengelolaan sampah elektronik yang baik dan informasi lainnya yang terkait dengan sampah elektronik dalam bentuk card. Lalu, untuk role admin dapat menambahkan tips and tricks baru.
 
 ### 💰 Manage Keuangan
-💸 User - [Hugo Sulaiman Setiawan](https://github.com/hugo-setiawan)
+### 💸 User - [Hugo Sulaiman Setiawan](https://github.com/hugo-setiawan)
 
 Fitur ini akan menampilkan
     
-💸 Admin - [Raditya Aditama](https://github.com/ratama98)
+### 💸 Admin - [Raditya Aditama](https://github.com/ratama98)
 
 Fitur ini akan menampilkan
 
