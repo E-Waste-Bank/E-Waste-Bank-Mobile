@@ -52,7 +52,7 @@ Fitur ini akan menampilkan
     
 ### 💸 Admin - [Raditya Aditama](https://github.com/ratama98)
 
-Fitur ini akan menampilkan
+Apabila pengguna yang sedang login merupakan seorang admin, fitur ini akan menampilkan halaman manage keuangan admin di mana admin tersebut dapat melakukan hal-hal berikut: mengakses data keuangan dan data cashout semua user, menyetujui request cashout dari user, dan mengatur keuangan user.
 
 ---------------------------
 ## 👩🏻‍💻 Persona Aplikasi 👩🏻‍💻
