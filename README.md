@@ -1,5 +1,5 @@
 # 🍃 E-Waste Bank 🍃
-![Staging](https://github.com/E-Waste-Bank/e_waste_bank_mobile/actions/workflows/staging.yml/badge.svg) ![Pre-release](https://github.com/E-Waste-Bank/e_waste_bank_mobile/actions/workflows/pre-release.yml/badge.svg) ![Release](https://github.com/E-Waste-Bank/e_waste_bank_mobile/actions/workflows/release.yml/badge.svg) [![Build status](https://build.appcenter.ms/v0.1/apps/f8e0058f-2ee0-48a6-a041-87b3d1ab2b71/branches/main/badge)](https://appcenter.ms)
+[![Staging](https://github.com/E-Waste-Bank/e_waste_bank_mobile/actions/workflows/staging.yml/badge.svg)](https://github.com/E-Waste-Bank/e_waste_bank_mobile/actions/workflows/staging.yml) [![Pre-release](https://github.com/E-Waste-Bank/e_waste_bank_mobile/actions/workflows/pre-release.yml/badge.svg)](https://github.com/E-Waste-Bank/e_waste_bank_mobile/actions/workflows/pre-release.yml) [![Release](https://github.com/E-Waste-Bank/e_waste_bank_mobile/actions/workflows/release.yml/badge.svg)](https://github.com/E-Waste-Bank/e_waste_bank_mobile/actions/workflows/release.yml) [![Build status](https://build.appcenter.ms/v0.1/apps/f8e0058f-2ee0-48a6-a041-87b3d1ab2b71/branches/main/badge)](https://appcenter.ms)
 
 ## Mobile (flutter)
 > Proyek ini dibuat untuk memenuhi tugas Proyek Akhir Semester (PAS)
@@ -47,8 +47,7 @@ Fitur ini akan menampilkan informasi tentang tips dan tricks mengenai pengelolaa
 
 ### 💰 Manage Keuangan
 ### 💸 User - [Hugo Sulaiman Setiawan](https://github.com/hugo-setiawan)
-
-Fitur ini akan menampilkan
+Fitur ini akan menampilkan jumlah saldo yang dimiliki user (yang akan diatur lebih lanjut oleh *admin* pada modul Manage Keuangan - Admin). Selain itu, fitur ini juga memungkinkan pengguna untuk me-*request* penarikan uang melalui fitur *Cashout*. *Request* penarikan uang yang dibuat akan disimpan pada server, kemudian *admin* akan menyetujui penarikan tersebut. 
     
 ### 💸 Admin - [Raditya Aditama](https://github.com/ratama98)
 
