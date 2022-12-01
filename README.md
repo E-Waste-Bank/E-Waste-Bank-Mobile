@@ -10,13 +10,6 @@
 ## 📱 Tautan APK 📱
 Anda dapat mengunduh apk kami di `https://install.appcenter.ms/orgs/e-waste-bank/apps/e_waste_bank_mobile/distribution_groups/public`
 
-## 🌏 Alur Pengintegrasian dengan Web Service 🌏
-Berikut ini adalah langkah-langkah yang akan dilakukan untuk mengintegrasikan aplikasi dengan server web.
-1. Mengimplementasikan sebuah wrapper class dengan menggunakan library http dan map untuk mendukung penggunaan cookie-based authentication pada aplikasi. 
-2. Kemudian, mengimplementasikan REST API pada Django (views.py) yang sudah dibuat sebelumnya dengan menggunakan JsonResponse atau Django JSON Serializer.
-3. Selanjutnya, integrasi dilakukan dengan mengimplementasikan desain front-end untuk aplikasi berdasarkan desain web.
-4. Kemudian, melakukan integrasi antara front-end dengan back-end dengan menggunakan konsep asynchronous HTTP.
-
 ## 👩🏻‍💻 Pengembang Aplikasi 🧑🏻‍💻
 - [Hugo Sulaiman Setiawan](https://github.com/hugo-setiawan) (2106707315)
 - [Hayfa Najma](https://github.com/HayfaNajma07) (2106653754)
@@ -31,28 +24,49 @@ Gaya hidup yang serba digital seperti saat ini, membuat kita sangat bergantung d
 
 Aplikasi ini dapat digunakan oleh masyarakat untuk mendapatkan uang melalui menjual barang elektronik yang sudah tidak layak pakai. Aplikasi ini juga dapat melakukan penjemputan barang elektronik bekas ke lokasi yang ditentukan oleh pengguna. selain itu, pengguna juga mendapatkan edukasi melalui aplikasi ini dengan diadakannya jenis-jenis E-Waste yang ada dan cara mengelola E-Waste yang benar.
 
-## 👥 Daftar Modul 👥
-Berikut ini adalah daftar modul yang akan diimplementasikan beserta pengembang dari setiap modul.
-- About Us- [Riona Adani Ghaisani](https://github.com/rionadani)
-- Halaman Utama - Semua Anggota
-- Request Penjemputan - [Ibni Shaquille Syauqi Ibrahim](https://github.com/IbniShaquille)
-- Tips and Tricks - [Hayfa Najma](https://github.com/HayfaNajma07)
-- Manage Keuangan
-  - User - [Hugo Sulaiman Setiawan](https://github.com/hugo-setiawan)
-  - Admin - [Raditya Aditama](https://github.com/ratama98)
+## 🌏 Alur Pengintegrasian dengan Web Service 🌏
+Berikut ini adalah langkah-langkah yang akan dilakukan untuk mengintegrasikan aplikasi dengan server web.
+1. Mengimplementasikan sebuah wrapper class dengan menggunakan library http dan map untuk mendukung penggunaan cookie-based authentication pada aplikasi. 
+2. Kemudian, mengimplementasikan REST API pada Django (views.py) yang sudah dibuat sebelumnya dengan menggunakan JsonResponse atau Django JSON Serializer.
+3. Selanjutnya, integrasi dilakukan dengan mengimplementasikan desain front-end untuk aplikasi berdasarkan desain web.
+4. Kemudian, melakukan integrasi antara front-end dengan back-end dengan menggunakan konsep asynchronous HTTP.
 
+## 👥 Daftar Modul dan Alur Pengintegrasian 👥\
+Berikut ini beberapa fitur yang disediakan pada aplikasi E-Waste Bank:
+### 🔎 About Us- [Riona Adani Ghaisani](https://github.com/rionadani)
+Fitur ini akan menampilkan
+
+### 🚚 Request Penjemputan - [Ibni Shaquille Syauqi Ibrahim](https://github.com/IbniShaquille)
+Fitur ini akan menampilkan
+
+### 💡 Tips and Tricks - [Hayfa Najma](https://github.com/HayfaNajma07)
+Fitur ini akan menampilkan informasi tentang tips dan tricks mengenai pengelolaan sampah elektronik yang baik dan informasi lainnya yang terkait dengan sampah elektronik dalam bentuk card. Lalu, untuk role admin dapat menambahkan tips and tricks baru.
+
+### 💰 Manage Keuangan
+💸 User - [Hugo Sulaiman Setiawan](https://github.com/hugo-setiawan)
+
+Fitur ini akan menampilkan
+    
+💸 Admin - [Raditya Aditama](https://github.com/ratama98)
+
+Fitur ini akan menampilkan
+    
 ## 👩🏻‍💻 Persona Aplikasi 👩🏻‍💻
 ### 👤 Admin 👤
 Admin dapat:
-- Memiliki akses ke halaman utama dan semua modul
-- Memiliki akses untuk mengedit dan menambahkan informasi mengenai E-Waste
+- Pada halaman about us, admin dapat melihat tentang aplikasi E-Waste Bank, feedback orang lain mengenai aplikasi, dan dapat memberikan feedback.
+- Pada halaman tips and tricks, admin dapat melihat berbagai tips dan tricks dan mencari tips dan tricks, serta menambahkan tips dan tricks baru.
+- Pada halaman Request Penjemputan, admin dapat melakukan request penjemputan sampah dan mengisi detail penjemputan sampah yang telah ditentukan. Lalu, admin juga dapat melihat detail penjemputannya, serta memperbarui status request penjemputan dan melakukan penghapusan request.
+- Pada halaman Manage Keuangan, admin dapat membuat penarikan baru.
 
 ### 🔒 User Yang Tidak Login 🔒
 User yang tidak login dapat:
-- Memiliki akses untuk ke halaman utama
-- Memiliki akses untuk fitur Tips and Tricks
+- Pada halaman about us, user dapat melihat tentang aplikasi E-Waste Bank, feedback orang lain mengenai aplikasi, dan dapat memberikan feedback.
+- Pada halaman tips and tricks, user dapat melihat berbagai tips dan tricks dan mencari tips dan tricks.
 
 ### 🔑 User Yang Sudah Login 🔑
 User yang sudah login dapat:
-- Memiliki akses ke halaman utama.
-- Memiliki akses untuk semua fitur yang ada pada aplikasi E-Waste Bank.
+- Pada halaman about us, user dapat melihat tentang aplikasi E-Waste Bank, feedback orang lain mengenai aplikasi, dan dapat memberikan feedback.
+- Pada halaman tips and tricks, user dapat melihat berbagai tips dan tricks dan mencari tips dan tricks.
+- Pada halaman Request Penjemputan, user dapat melakukan request penjemputan sampah dan mengisi detail penjemputan sampah yang telah ditentukan. Lalu, user juga dapat melihat detail penjemputannya (tanggal penjemputan, status, berat sampah, dan lain-lain) setelah user melakukan request.
+- Pada halaman Manage Keuangan, user dapat membuat penarikan baru.
