@@ -60,7 +60,7 @@ Apabila pengguna yang sedang login merupakan seorang admin, fitur ini akan menam
 - Pada halaman about us, admin dapat melihat tentang aplikasi E-Waste Bank, feedback orang lain mengenai aplikasi, dan dapat memberikan feedback.
 - Pada halaman tips and tricks, admin dapat melihat berbagai tips dan tricks dan mencari tips dan tricks, serta menambahkan tips dan tricks baru.
 - Pada halaman Request Penjemputan, admin dapat melakukan request penjemputan sampah dan mengisi detail penjemputan sampah yang telah ditentukan. Lalu, admin juga dapat melihat detail penjemputannya, serta memperbarui status request penjemputan dan melakukan penghapusan request.
-- Pada halaman Manage Keuangan, admin dapat membuat penarikan baru.
+- Pada halaman Manage Keuangan, admin dapat mengakses data keuangan dan data cashout semua user, menyetujui request cashout dari user, dan mengatur keuangan user.
 
 ### 🔒 User Yang Tidak Login 🔒
 - Pada halaman about us, user dapat melihat tentang aplikasi E-Waste Bank, feedback orang lain mengenai aplikasi, dan dapat memberikan feedback.
