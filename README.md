@@ -17,6 +17,7 @@ Anda dapat mengunduh apk kami di `https://install.appcenter.ms/orgs/e-waste-bank
 - [Raditya Aditama](https://github.com/ratama98) (2106750313)
 - [Riona Adani Ghaisani](https://github.com/rionadani) (2106750995)
 
+---------------------------
 ## 📃 Cerita Aplikasi 📃
 Sampah elektronik (*e-waste*) merupakan salah satu efek samping dari Transformasi Digital yang terjadi pada masa kini. Menurut data dari [Global E-Waste Monitor](https://ewastemonitor.info/), terdapat 53 juta ton sampah elektronik yang dihasilkan oleh seluruh negara di dunia pada tahun 2020. Estimasi yang dilakukan oleh badan yang sama juga menyajikan kesimpulan bahwa laju pertumbuhan sampah elektronik akan terus berkembang, bahkan dalam waktu sekitar 8 tahun, yaitu pada tahun 2030, diperkirakan bahwa akan ada 120 juta ton sampah elektronik yang dihasilkan oleh manusia! Jika situasi ini terus berlanjut, dampaknya akan sangat besar, baik bagi manusia, flora, dan fauna. 
 
@@ -24,6 +25,7 @@ Gaya hidup yang serba digital seperti saat ini, membuat kita sangat bergantung d
 
 Aplikasi ini dapat digunakan oleh masyarakat untuk mendapatkan uang melalui menjual barang elektronik yang sudah tidak layak pakai. Aplikasi ini juga dapat melakukan penjemputan barang elektronik bekas ke lokasi yang ditentukan oleh pengguna. selain itu, pengguna juga mendapatkan edukasi melalui aplikasi ini dengan diadakannya jenis-jenis E-Waste yang ada dan cara mengelola E-Waste yang benar.
 
+---------------------------
 ## 🌏 Alur Pengintegrasian dengan Web Service 🌏
 Berikut ini adalah langkah-langkah yang akan dilakukan untuk mengintegrasikan aplikasi dengan server web.
 1. Mengimplementasikan sebuah wrapper class dengan menggunakan library http dan map untuk mendukung penggunaan cookie-based authentication pada aplikasi. 
@@ -31,7 +33,8 @@ Berikut ini adalah langkah-langkah yang akan dilakukan untuk mengintegrasikan ap
 3. Selanjutnya, integrasi dilakukan dengan mengimplementasikan desain front-end untuk aplikasi berdasarkan desain web.
 4. Kemudian, melakukan integrasi antara front-end dengan back-end dengan menggunakan konsep asynchronous HTTP.
 
-## 👥 Daftar Modul dan Alur Pengintegrasian 👥\
+---------------------------
+## 👥 Daftar Modul dan Alur Pengintegrasian 👥
 Berikut ini beberapa fitur yang disediakan pada aplikasi E-Waste Bank:
 ### 🔎 About Us- [Riona Adani Ghaisani](https://github.com/rionadani)
 Fitur ini akan menampilkan
@@ -50,22 +53,20 @@ Fitur ini akan menampilkan
 💸 Admin - [Raditya Aditama](https://github.com/ratama98)
 
 Fitur ini akan menampilkan
-    
+
+---------------------------
 ## 👩🏻‍💻 Persona Aplikasi 👩🏻‍💻
 ### 👤 Admin 👤
-Admin dapat:
 - Pada halaman about us, admin dapat melihat tentang aplikasi E-Waste Bank, feedback orang lain mengenai aplikasi, dan dapat memberikan feedback.
 - Pada halaman tips and tricks, admin dapat melihat berbagai tips dan tricks dan mencari tips dan tricks, serta menambahkan tips dan tricks baru.
 - Pada halaman Request Penjemputan, admin dapat melakukan request penjemputan sampah dan mengisi detail penjemputan sampah yang telah ditentukan. Lalu, admin juga dapat melihat detail penjemputannya, serta memperbarui status request penjemputan dan melakukan penghapusan request.
 - Pada halaman Manage Keuangan, admin dapat membuat penarikan baru.
 
 ### 🔒 User Yang Tidak Login 🔒
-User yang tidak login dapat:
 - Pada halaman about us, user dapat melihat tentang aplikasi E-Waste Bank, feedback orang lain mengenai aplikasi, dan dapat memberikan feedback.
 - Pada halaman tips and tricks, user dapat melihat berbagai tips dan tricks dan mencari tips dan tricks.
 
 ### 🔑 User Yang Sudah Login 🔑
-User yang sudah login dapat:
 - Pada halaman about us, user dapat melihat tentang aplikasi E-Waste Bank, feedback orang lain mengenai aplikasi, dan dapat memberikan feedback.
 - Pada halaman tips and tricks, user dapat melihat berbagai tips dan tricks dan mencari tips dan tricks.
 - Pada halaman Request Penjemputan, user dapat melakukan request penjemputan sampah dan mengisi detail penjemputan sampah yang telah ditentukan. Lalu, user juga dapat melihat detail penjemputannya (tanggal penjemputan, status, berat sampah, dan lain-lain) setelah user melakukan request.
