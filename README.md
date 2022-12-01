@@ -40,6 +40,8 @@ Berikut ini adalah daftar modul yang akan diimplementasikan beserta pengembang d
 - Manage Keuangan
   - User - [Hugo Sulaiman Setiawan](https://github.com/hugo-setiawan)
   - Admin - [Raditya Aditama](https://github.com/ratama98)
+    
+    Pada modul ini, admin yang sedang login dapat mengakses halaman manage keuangan admin yang memiliki fitur antara lain: dapat mengakses data keuangan dan data cashout semua user,  dapat menyetujui request cashout dari user, dan dapat mengatur keuangan user.
 
 ## 👩🏻‍💻 Persona Aplikasi 👩🏻‍💻
 ### 👤 Admin 👤
