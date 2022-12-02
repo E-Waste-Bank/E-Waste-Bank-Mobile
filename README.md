@@ -37,7 +37,7 @@ Berikut ini adalah langkah-langkah yang akan dilakukan untuk mengintegrasikan ap
 ## 👥 Daftar Modul dan Alur Pengintegrasian 👥
 Berikut ini beberapa fitur yang disediakan pada aplikasi E-Waste Bank:
 ### 🔎 About Us- [Riona Adani Ghaisani](https://github.com/rionadani)
-Fitur ini akan menampilkan
+Fitur ini akan menampilkan deskripsi singkat mengenai E-Waste Bank. User juga dapat memberikan feedback dan melihat 3 feedback terbaru. 
 
 ### 🚚 Request Penjemputan - [Ibni Shaquille Syauqi Ibrahim](https://github.com/IbniShaquille)
 Fitur ini akan menampilkan
