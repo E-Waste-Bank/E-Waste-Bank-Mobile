@@ -3,7 +3,16 @@ import 'package:e_waste_bank_mobile/main.dart';
 import 'package:tips_and_tricks/page/list_tips_and_trick.dart';
 import 'package:tips_and_tricks/page/add_tips_and_trick.dart';
 
-Drawer buildDrawer(BuildContext context) {
+class MyDrawer extends StatefulWidget {
+  const MyDrawer({super.key});
+
+  @override
+  State<MyDrawer> createState() => _MyDrawerState();
+}
+
+class _MyDrawerState extends State<MyDrawer> {
+  @override
+  Drawer build(BuildContext context) {
   return Drawer(
     child: Column(
       children: [
@@ -37,4 +46,5 @@ Drawer buildDrawer(BuildContext context) {
       ]
     )
   );
+}
 }

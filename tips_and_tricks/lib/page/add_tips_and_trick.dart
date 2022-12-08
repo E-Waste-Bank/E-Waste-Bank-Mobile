@@ -31,7 +31,7 @@ class _AddTipsAndTrickPage extends State<AddTipsAndTrickPage> {
         appBar: AppBar(
           title: Text('Add Tips & Tricks Article'),
         ),
-        drawer: buildDrawer(context),
+        drawer: MyDrawer(),
         body: Form(
             key: _formKey,
             child: Container(

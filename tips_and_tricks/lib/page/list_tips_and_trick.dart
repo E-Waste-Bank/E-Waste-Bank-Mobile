@@ -17,7 +17,7 @@ class _TipsAndTrickPage extends State<TipsAndTrickPage> {
       appBar: AppBar(
         title: Text('Tips And Trick'),
       ),
-      drawer: buildDrawer(context),
+      drawer: MyDrawer(),
       body: FutureBuilder(
         future: fetchTipsAndTrick(),
         builder: (context, AsyncSnapshot snapshot) {

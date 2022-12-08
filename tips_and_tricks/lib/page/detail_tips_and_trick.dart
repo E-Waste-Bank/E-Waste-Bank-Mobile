@@ -11,12 +11,12 @@ class DetailTipsAndTrick extends StatelessWidget{
   const DetailTipsAndTrick({super.key, required this.tipsAndTrick});
 
   _launchURL() async {
-  var url = tipsAndTrick.article_url;
-  print(url);
-  if (await canLaunch(url)) {
-    await launch(url);
+  var uri = Uri.parse(tipsAndTrick.article_url);
+  print(uri);
+  if (await canLaunchUrl(uri)) {
+    await launchUrl(uri);
   } else {
-    throw 'Could not launch $url';
+    throw 'Could not launch $uri';
   }
 }
 
@@ -26,7 +26,7 @@ class DetailTipsAndTrick extends StatelessWidget{
       appBar: AppBar(
         title: const Text('Tips And Trick'),
       ),
-      drawer: buildDrawer(context),
+      drawer: MyDrawer(),
       body: SafeArea(
         bottom: false,
         child: Stack(
