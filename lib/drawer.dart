@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:e_waste_bank_mobile/main.dart';
-import 'package:e_waste_bank_mobile/tips_and_tricks/page/list_tips_and_trick.dart';
-import 'package:e_waste_bank_mobile/tips_and_tricks/page/add_tips_and_trick.dart';
+import 'package:tips_and_tricks/page/list_tips_and_trick.dart';
+import 'package:tips_and_tricks/page/add_tips_and_trick.dart';
 
 Drawer buildDrawer(BuildContext context) {
   return Drawer(

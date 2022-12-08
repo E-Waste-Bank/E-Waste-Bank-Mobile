@@ -1,8 +1,8 @@
-import 'package:e_waste_bank_mobile/tips_and_trick/model/TipsAndTrick.dart';
+import 'package:tips_and_tricks/model/TipsAndTrick.dart';
 import 'package:flutter/material.dart';
 import 'package:e_waste_bank_mobile/drawer.dart';
-import 'package:e_waste_bank_mobile/tips_and_trick/util/fetch_tips_and_trick.dart';
-import 'package:e_waste_bank_mobile/tips_and_trick/page/list_tips_and_trick.dart';
+import 'package:tips_and_tricks/util/fetch_tips_and_trick.dart';
+import 'package:tips_and_tricks/page/list_tips_and_trick.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 

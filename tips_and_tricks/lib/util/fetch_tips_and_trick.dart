@@ -1,6 +1,6 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'package:e_waste_bank_mobile/tips_and_trick/model/TipsAndTrick.dart';
+import 'package:tips_and_tricks/model/TipsAndTrick.dart';
 
 Future<List<TipsAndTrick>> fetchTipsAndTrick() async {
   // print('masuk');
