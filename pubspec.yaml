@@ -39,6 +39,7 @@ dependencies:
   pbp_django_auth: ^0.2.2
   provider: ^6.0.4
   modal_bottom_sheet: ^2.1.2
+  url_launcher: ^6.1.7
 
   keuangan:
     path: keuangan
