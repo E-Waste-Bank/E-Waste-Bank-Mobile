@@ -2,6 +2,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:tips_and_tricks/model/TipsAndTrick.dart';
 
+// Menerapkan pemanggilan asynchronous ke Web Service Django
 Future<List<TipsAndTrick>> fetchTipsAndTrick() async {
   // print('masuk');
   var url = Uri.parse('https://e-waste-bank.up.railway.app/tips-and-tricks/post-json');

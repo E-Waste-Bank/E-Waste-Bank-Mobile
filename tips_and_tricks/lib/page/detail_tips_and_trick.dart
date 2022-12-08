@@ -5,20 +5,11 @@ import 'package:tips_and_tricks/util/fetch_tips_and_trick.dart';
 import 'package:tips_and_tricks/page/list_tips_and_trick.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class DetailTipsAndTrick extends StatelessWidget{
   final TipsAndTrick tipsAndTrick;
   const DetailTipsAndTrick({super.key, required this.tipsAndTrick});
-
-  _launchURL() async {
-  var uri = Uri.parse(tipsAndTrick.article_url);
-  print(uri);
-  if (await canLaunchUrl(uri)) {
-    await launchUrl(uri);
-  } else {
-    throw 'Could not launch $uri';
-  }
-}
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +63,6 @@ class DetailTipsAndTrick extends StatelessWidget{
                     color: Colors.white,
                     boxShadow: [
                       BoxShadow(
-                        // color: secondaryColor.withOpacity(0.5),
                         spreadRadius: 3,
                         blurRadius: 7,
                         offset: const Offset(
@@ -100,13 +90,11 @@ class DetailTipsAndTrick extends StatelessWidget{
                           children: [
                             const Icon(
                               Icons.person,
-                              // color: darkSecondaryColor,
                             ),
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
                                 'Author: ${tipsAndTrick.source}',
-                                // style: myTextTheme.caption,
                               ),
                             ),
                           ],
@@ -115,35 +103,26 @@ class DetailTipsAndTrick extends StatelessWidget{
                           children: [
                             const Icon(
                               Icons.calendar_today_rounded,
-                              // color: darkSecondaryColor,
                             ),
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
                                 'Published Date: ${tipsAndTrick.published_date}',
-                                // style: myTextTheme.caption,
                               ),
                             ),
                           ],
                         ),
                         const Divider(color: Colors.grey),
                         Text(
-                          tipsAndTrick.brief_description,
+                          'Description: ${tipsAndTrick.brief_description}',
                           style: const TextStyle(fontSize: 16),
                           textAlign: TextAlign.justify,
                         ),
                         const SizedBox(height: 10),
-                        ElevatedButton(
-                          // style: ElevatedButton.styleFrom(
-                          //   primary: darkSecondaryColor,
-                          //   textStyle: myTextTheme.button,
-                          // ),
-                          child: const Center(
-                            child: Text('Read more'),
-                          ),
-                          onPressed: () {
-                            _launchURL();
-                          },
+                        Text(
+                          'Link: ${tipsAndTrick.article_url}',
+                          style: const TextStyle(fontSize: 16),
+                          textAlign: TextAlign.justify,
                         ),
                       ],
                     ),

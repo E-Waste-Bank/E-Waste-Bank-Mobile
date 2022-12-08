@@ -351,11 +351,7 @@ packages:
     source: hosted
     version: "1.3.1"
   url_launcher:
-<<<<<<< HEAD
-    dependency: transitive
-=======
     dependency: "direct main"
->>>>>>> e58a5bb423f5c8d53b4bc6f8f78ceb77407c1a10
     description:
       name: url_launcher
       url: "https://pub.dartlang.org"
