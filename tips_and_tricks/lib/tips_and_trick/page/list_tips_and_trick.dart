@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:e_waste_bank_mobile/drawer.dart';
 import 'package:e_waste_bank_mobile/tips_and_trick/util/fetch_tips_and_trick.dart';
-import 'package:e_waste_bank_mobile/tips_and_trick/page/detail_tips_and_trick.dart';
+import 'package:tips_and_tricks/page/detail_tips_and_trick.dart;
 
 class TipsAndTrickPage extends StatefulWidget {
   const TipsAndTrickPage({super.key});
