@@ -32,6 +32,9 @@ dependencies:
   flutter:
     sdk: flutter
 
+  tips_and_tricks:
+    path: tips_and_tricks
+
   keuangan:
     path: keuangan
 
