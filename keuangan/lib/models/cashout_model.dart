@@ -2,6 +2,8 @@
 //
 //     final cashout = cashoutFromJson(jsonString);
 
+// ignore_for_file: constant_identifier_names
+
 import 'dart:convert';
 
 List<Cashout> cashoutFromJson(String str) => List<Cashout>.from(json.decode(str).map((x) => Cashout.fromJson(x)));
