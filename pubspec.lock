@@ -163,6 +163,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.4.12"
+  tips_and_tricks:
+    dependency: "direct main"
+    description:
+      path: tips_and_tricks
+      relative: true
+    source: path
+    version: "0.0.1"
   vector_math:
     dependency: transitive
     description:
