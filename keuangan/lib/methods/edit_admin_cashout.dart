@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:keuangan/models/admin_cashout_model.dart';=
+import 'package:keuangan/models/admin_cashout_model.dart';
 
 Future<dynamic> editAdminCashout(Cashout cashout) async {
   var url = Uri.parse('https://e-waste-bank.up.railway.app/keuangan/edit-cashout/<int:id>/');
