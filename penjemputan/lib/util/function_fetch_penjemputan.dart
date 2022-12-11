@@ -3,8 +3,8 @@ import 'dart:convert';
 import 'package:penjemputan/model/penjemputan_item.dart';
 
 // Menerapkan pemanggilan asynchronous ke Web Service Django
-Future<List<penjemputan_item>> fetch_penjemputan_item() async {
-  var url = Uri.parse('https://e-waste-bank.up.railway.app/tips-and-tricks/post-json');
+Future<List<PenjemputanItem>> fetchPenjemputanItem() async {
+  var url = Uri.parse('https://e-waste-bank.up.railway.app/penjemputan/json/');
   var response = await http.get(
     url,
     headers: {
@@ -15,12 +15,12 @@ Future<List<penjemputan_item>> fetch_penjemputan_item() async {
 
   // print(response.body);
   var data = jsonDecode(utf8.decode(response.bodyBytes));
-  List<penjemputan_item> list_penjemputan_item = [];
+  List<PenjemputanItem> listPenjemputanItem = [];
   for (var d in data){
     if (d != null){
-      list_penjemputan_item.add(penjemputan_item.fromJson(d));
+      listPenjemputanItem.add(PenjemputanItem.fromJson(d));
     }
   }
 
-  return list_penjemputan_item;
+  return listPenjemputanItem;
 }
