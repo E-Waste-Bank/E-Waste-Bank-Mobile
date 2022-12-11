@@ -20,6 +20,7 @@ class _AddTipsAndTrickPage extends State<AddTipsAndTrickPage> {
   final _clearImageUrl = TextEditingController();
   final _clearArticleUrl = TextEditingController();
   final _clearBriefDescription = TextEditingController();
+  
   String title = "";
   String source = "";
   DateTime? _publised_date;
