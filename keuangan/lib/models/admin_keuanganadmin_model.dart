@@ -38,11 +38,11 @@ class Fields {
     required this.user,
   });
 
-  int uangUser;
+  double uangUser;
   String user;
 
   factory Fields.fromJson(Map<String, dynamic> json) => Fields(
-    uangUser: json["uang_user"],
+    uangUser: json["uang_user"].toDouble(),
     user: json["user"],
   );
 
