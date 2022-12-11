@@ -3,6 +3,8 @@ import 'package:e_waste_bank_mobile/drawer.dart';
 import 'package:keuangan/methods/get_admin_cashout.dart';
 import 'package:keuangan/models/admin_cashout_model.dart';
 
+import 'admin_list_keuangan.dart';
+
 class AdminListCashoutsPage extends StatefulWidget {
   const AdminListCashoutsPage({Key? key}) : super(key: key);
 
@@ -94,6 +96,16 @@ class _AdminListCashoutsPageState extends State<AdminListCashoutsPage> {
               }
             }
           }),
+      floatingActionButton: FloatingActionButton (
+        onPressed: () {
+          Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) =>
+              const AdminListKeuanganPage(),
+              )
+          );
+        },
+      ),
     );
   }
 }
