@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:e_waste_bank_mobile/drawer.dart';
-import 'package:penjemputan/util/fetch_penjemputan.dart';
+import 'package:penjemputan/util/function_fetch_penjemputan.dart';
 import 'package:penjemputan/page/detail_penjemputan.dart';
 
 class PenjemputanPage extends StatefulWidget {
@@ -48,7 +48,7 @@ class _PenjemputanPage extends State<PenjemputanPage> {
                       padding: const EdgeInsets.symmetric(horizontal: 3, vertical: 3),
                       child: ListTile(
                         title: Text(
-                          "${snapshot.data![index].jenis_sampah}",
+                          "${snapshot.data![index].jenisSampah}",
                         ),
                         
                         onTap: () {
