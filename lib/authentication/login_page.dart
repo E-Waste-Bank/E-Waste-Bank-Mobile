@@ -25,27 +25,6 @@ class _LoginPageState extends State<LoginPage> {
     CookieRequest requester = context.watch<CookieRequest>();
     UserProvider userProvider = context.watch<UserProvider>();
 
-    Future<bool> loginPOST() async {
-      if (_loginPageFormKey.currentState!.validate()) {
-        final response =
-            await requester.login("http://e-waste-bank.up.railway.app/auth/login/", {
-          'username': username,
-          'password': password,
-        });
-
-        if (requester.loggedIn) {
-          userProvider.login(username, response['role']);
-          return true;
-        } else {
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: Text(response["status"]),
-          ));
-          return false;
-        }
-      }
-      return false;
-    }
-
     return Scaffold(
       appBar: AppBar(
         title: const Text("Login"),
@@ -106,7 +85,7 @@ class _LoginPageState extends State<LoginPage> {
                   onPressed: () async {
                     if (_loginPageFormKey.currentState!.validate()) {
                       final response = await requester
-                          .login("http://192.168.88.11:8000/auth/login/", {
+                          .login("http://e-waste-bank.up.railway.app/auth/login/", { // TODO ganti ke url local masing2 buat develop and debug
                         'username': username,
                         'password': password,
                       });
