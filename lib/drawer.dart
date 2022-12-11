@@ -8,6 +8,7 @@ import 'package:e_waste_bank_mobile/authentication/register.page.dart';
 import 'package:tips_and_tricks/page/list_tips_and_trick.dart';
 import 'package:tips_and_tricks/page/add_tips_and_trick.dart';
 // import 'package:penjemputan/page/list_penjemputan.dart';
+import 'package:keuangan/widgets/user_list_cashouts.dart';
 
 class MyDrawer extends StatefulWidget {
   const MyDrawer({super.key});
@@ -48,6 +49,15 @@ class _MyDrawerState extends State<MyDrawer> {
                   context,
                   MaterialPageRoute(
                       builder: (context) => const AddTipsAndTrickPage()));
+            }),
+      ),
+      Visibility(
+        visible: userProvider.isAuthenticated() && !userProvider.isAdmin(),
+        child: ListTile(
+            title: const Text('Lihat Cashouts'),
+            onTap: () {
+              Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: (context) => const UserListCashoutsPage()));
             }),
       ),
       Visibility(
