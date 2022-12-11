@@ -1,1 +1,170 @@
-// TODO implement
+import 'package:e_waste_bank_mobile/authentication/user_provider.dart';
+import 'package:flutter/material.dart';
+import 'package:keuangan/models/admin_cashout_model.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:provider/provider.dart';
+
+import 'package:e_waste_bank_mobile/drawer.dart';
+
+class LoginPage extends StatefulWidget {
+  const LoginPage({Key? key}) : super(key: key);
+
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  final _loginPageFormKey = GlobalKey<FormState>();
+
+  String username = "";
+  String password = "";
+
+  @override
+  Widget build(BuildContext context) {
+    CookieRequest requester = context.watch<CookieRequest>();
+    UserProvider userProvider = context.watch<UserProvider>();
+
+    Future<bool> loginPOST() async {
+      if (_loginPageFormKey.currentState!.validate()) {
+        final response = await requester.login("http://192.168.88.11:8000/auth/login/", {
+          'username': username,
+          'password': password,
+        });
+
+        if (requester.loggedIn) {
+          userProvider.login(username, response['role']);
+          return true;
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text(response["status"]),
+          ));
+          return false;
+        }
+      }
+      return false;
+    }
+
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Login"),
+      ),
+      drawer: const MyDrawer(),
+      body: Form(
+        key: _loginPageFormKey,
+        child: SingleChildScrollView(
+          child: Container(
+            padding: const EdgeInsets.all(20.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextFormField(
+                    decoration: InputDecoration(
+                        hintText: "Username anda",
+                        labelText: "Username",
+                        icon: const Icon(Icons.people),
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(5.0))),
+                    onChanged: (String? value) {
+                      setState(() {
+                        username = value!;
+                      });
+                    },
+                    onSaved: (String? value) {
+                      setState(() {
+                        username = value!;
+                      });
+                    },
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextFormField(
+                    decoration: InputDecoration(
+                        hintText: "Password anda",
+                        labelText: "Password",
+                        icon: const Icon(Icons.people),
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(5.0))),
+                    onChanged: (String? value) {
+                      setState(() {
+                        password = value!;
+                      });
+                    },
+                    onSaved: (String? value) {
+                      setState(() {
+                        password = value!;
+                      });
+                    },
+                  ),
+                ),
+                TextButton(
+                  onPressed: () async {
+                          if (_loginPageFormKey.currentState!.validate()) {
+                            final response = await requester.login("http://192.168.88.11:8000/auth/login/", {
+                              'username': username,
+                              'password': password,
+                            });
+
+                            if (requester.loggedIn) {
+                              userProvider.login(username, response['role']);
+                                                    showDialog(
+                          context: context,
+                          builder: ((context) {
+                            return Dialog(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              elevation: 15,
+                              child: ListView(
+                                padding:
+                                    const EdgeInsets.only(top: 20, bottom: 20),
+                                shrinkWrap: true,
+                                children: <Widget>[
+                                  const Center(
+                                    child: Text(
+                                      "Data budget berhasil disimpan!",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                  const SizedBox(height: 30),
+                                  TextButton(
+                                    onPressed: () {
+                                      // pop untuk menutup dialog box
+                                      Navigator.pop(context);
+                                    },
+                                    child: const Text(
+                                      'OK',
+                                      style: TextStyle(color: Colors.blue),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            );
+                              // return true;
+                            } else {
+                              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                content: Text(response["status"]),
+                              ));
+                            })
+                          }
+                  },
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all(Colors.blue),
+                  ),
+                  child: const Text(
+                    "Simpan",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
