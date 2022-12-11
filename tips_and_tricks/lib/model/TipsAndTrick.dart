@@ -5,7 +5,7 @@ List<TipsAndTrick> tipsAndTrickFromJson(String str) => List<TipsAndTrick>.from(j
 String tipsAndTrickToJson(List<TipsAndTrick> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class TipsAndTrick{
-  // int user = 0;
+  String user;
   String title = "";
   String source = "";
   String published_date = "";
@@ -14,7 +14,7 @@ class TipsAndTrick{
   String article_url = "";
 
   TipsAndTrick({
-    // required this.user,
+    required this.user,
     required this.title,
     required this.source,
     required this.published_date,
@@ -24,7 +24,7 @@ class TipsAndTrick{
   });
 
   factory TipsAndTrick.fromJson(Map<String, dynamic> json) => TipsAndTrick(
-    // user: json["fields"]["user"], 
+    user: json["fields"]["user"], 
     title: json["fields"]["title"], 
     source: json["fields"]["source"], 
     published_date: json["fields"]["published_date"],
@@ -34,7 +34,7 @@ class TipsAndTrick{
   );
 
   Map<String, dynamic> toJson() =>{
-    // 'user': user,
+    'user': user,
     "title": title,
     "source": source,
     "published_date": published_date,

@@ -94,7 +94,20 @@ class DetailTipsAndTrick extends StatelessWidget{
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
-                                'Author: ${tipsAndTrick.source}',
+                                'Added by: ${tipsAndTrick.user}',
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            const Icon(
+                              Icons.person,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                'Authored by: ${tipsAndTrick.source}',
                               ),
                             ),
                           ],
