@@ -1,50 +1,50 @@
 // To parse this JSON data, do
 //
-//     final penjemputan_item = penjemputan_itemFromJson(jsonString);
+//     final PenjemputanItem = PenjemputanItemFromJson(jsonString);
 
 import 'dart:convert';
 // import 'dart:ffi';
 
-List<penjemputan_item> penjemputan_itemFromJson(String str) => List<penjemputan_item>.from(json.decode(str).map((x) => penjemputan_item.fromJson(x)));
+List<PenjemputanItem> penjemputanItemFromJson(String str) => List<PenjemputanItem>.from(json.decode(str).map((x) => PenjemputanItem.fromJson(x)));
 
-String penjemputan_itemToJson(List<penjemputan_item> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+String penjemputanItemToJson(List<PenjemputanItem> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
-class penjemputan_item {
-    penjemputan_item({
+class PenjemputanItem {
+    PenjemputanItem({
         required this.id,
         required this.alamat,
-        required this.tanggal_jemput,
-        required this.waktu_jemput,
-        required this.waktu_sekarang,
-        required this.jenis_sampah,
-        required this.berat_sampah,
+        required this.tanggalJemput,
+        required this.waktuJemput,
+        required this.waktuSekarang,
+        required this.jenisSampah,
+        required this.beratSampah,
     });
 
     int id;
     String alamat;
-    String tanggal_jemput;
-    String waktu_jemput;
-    String waktu_sekarang;
-    String jenis_sampah;
-    int berat_sampah;
+    String tanggalJemput;
+    String waktuJemput;
+    String waktuSekarang;
+    String jenisSampah;
+    int beratSampah;
 
-    factory penjemputan_item.fromJson(Map<String, dynamic> json) => penjemputan_item(
+    factory PenjemputanItem.fromJson(Map<String, dynamic> json) => PenjemputanItem(
         id: json["pk"],
         alamat: json["fields"]["alamat"],
-        tanggal_jemput: json["fields"]["tanggal_jemput"],
-        waktu_jemput: json["fields"]["waktu_jemput"],
-        waktu_sekarang: json["fields"]["waktu_sekarang"],
-        jenis_sampah: json["fields"]["jenis_sampah"],
-        berat_sampah: json["fields"]["berat_sampah"],
+        tanggalJemput: json["fields"]["tanggal_jemput"],
+        waktuJemput: json["fields"]["waktu_jemput"],
+        waktuSekarang: json["fields"]["waktu_sekarang"],
+        jenisSampah: json["fields"]["jenis_sampah"],
+        beratSampah: json["fields"]["berat_sampah"],
     );
 
     Map<String, dynamic> toJson() => {
         "id": id,
         "alamat": alamat,
-        "tanggal_jemput": tanggal_jemput,
-        "waktu_jemput": waktu_jemput,
-        "waktu_sekarang": waktu_sekarang,
-        "jenis_sampah": jenis_sampah,
-        "berat_sampah": berat_sampah,
+        "tanggal_jemput": tanggalJemput,
+        "waktu_jemput": waktuJemput,
+        "waktu_sekarang": waktuSekarang,
+        "jenis_sampah": jenisSampah,
+        "berat_sampah": beratSampah,
     };
 }
