@@ -19,6 +19,13 @@ class _LoginPageState extends State<LoginPage> {
 
   String username = "";
   String password = "";
+  var _isObscured = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _isObscured = true;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -67,8 +74,20 @@ class _LoginPageState extends State<LoginPage> {
                         hintText: "Username anda",
                         labelText: "Username",
                         icon: const Icon(Icons.people),
+                        suffixIcon: IconButton(
+                          padding: const EdgeInsetsDirectional.only(end: 12.0),
+                          icon: _isObscured
+                              ? const Icon(Icons.visibility)
+                              : const Icon(Icons.visibility_off),
+                          onPressed: () {
+                            setState(() {
+                              _isObscured = !_isObscured;
+                            });
+                          },
+                        ),
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(5.0))),
+                    obscureText: _isObscured,
                     onChanged: (String? value) {
                       setState(() {
                         username = value!;
@@ -138,8 +157,11 @@ class _LoginPageState extends State<LoginPage> {
                                       onPressed: () {
                                         // pop untuk menutup dialog box
                                         Navigator.pop(context);
-                                        Navigator.pushReplacement(context,
-                MaterialPageRoute(builder: (context) => const MyHomePage()));
+                                        Navigator.pushReplacement(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    const MyHomePage()));
                                       },
                                       child: const Text(
                                         'OK',
