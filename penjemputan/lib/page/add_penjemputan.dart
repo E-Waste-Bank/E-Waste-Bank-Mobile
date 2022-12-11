@@ -20,7 +20,6 @@ class _AddTipsAndTrickPage extends State<AddTipsAndTrickPage> {
   final _clearImageUrl = TextEditingController();
   final _clearArticleUrl = TextEditingController();
   final _clearBriefDescription = TextEditingController();
-  
   String title = "";
   String source = "";
   // ignore: non_constant_identifier_names
@@ -261,7 +260,7 @@ class _AddTipsAndTrickPage extends State<AddTipsAndTrickPage> {
                                               .all(Colors.blue),
                                         ),
                                         onPressed: () {
-                                          final username = Provider.of<UserProvider>(context, listen: false).getUsername();
+                                          final username = context.watch<UserProvider>().getUsername();
                                           if (_formKey.currentState!
                                               .validate() &&
                                               _publised_date != null) {
