@@ -5,6 +5,7 @@ import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 
 import 'package:e_waste_bank_mobile/drawer.dart';
+import 'package:e_waste_bank_mobile/main.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -26,7 +27,8 @@ class _LoginPageState extends State<LoginPage> {
 
     Future<bool> loginPOST() async {
       if (_loginPageFormKey.currentState!.validate()) {
-        final response = await requester.login("http://192.168.88.11:8000/auth/login/", {
+        final response =
+            await requester.login("http://192.168.88.11:8000/auth/login/", {
           'username': username,
           'password': password,
         });
@@ -102,61 +104,96 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 TextButton(
                   onPressed: () async {
-                          if (_loginPageFormKey.currentState!.validate()) {
-                            final response = await requester.login("http://192.168.88.11:8000/auth/login/", {
-                              'username': username,
-                              'password': password,
-                            });
+                    if (_loginPageFormKey.currentState!.validate()) {
+                      final response = await requester
+                          .login("http://192.168.88.11:8000/auth/login/", {
+                        'username': username,
+                        'password': password,
+                      });
 
-                            if (requester.loggedIn) {
-                              userProvider.login(username, response['role']);
-                                                    showDialog(
-                          context: context,
-                          builder: ((context) {
-                            return Dialog(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              elevation: 15,
-                              child: ListView(
-                                padding:
-                                    const EdgeInsets.only(top: 20, bottom: 20),
-                                shrinkWrap: true,
-                                children: <Widget>[
-                                  const Center(
-                                    child: Text(
-                                      "Data budget berhasil disimpan!",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold),
+                      if (requester.loggedIn) {
+                        userProvider.login(username, response['role']);
+                        showDialog(
+                            context: context,
+                            builder: ((context) {
+                              return Dialog(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                elevation: 15,
+                                child: ListView(
+                                  padding: const EdgeInsets.only(
+                                      top: 20, bottom: 20),
+                                  shrinkWrap: true,
+                                  children: <Widget>[
+                                    const Center(
+                                      child: Text(
+                                        "Login berhasil!",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold),
+                                      ),
                                     ),
-                                  ),
-                                  const SizedBox(height: 30),
-                                  TextButton(
-                                    onPressed: () {
-                                      // pop untuk menutup dialog box
-                                      Navigator.pop(context);
-                                    },
-                                    child: const Text(
-                                      'OK',
-                                      style: TextStyle(color: Colors.blue),
+                                    const SizedBox(height: 30),
+                                    TextButton(
+                                      onPressed: () {
+                                        // pop untuk menutup dialog box
+                                        Navigator.pop(context);
+                                        Navigator.pushReplacement(context,
+                MaterialPageRoute(builder: (context) => const MyHomePage()));
+                                      },
+                                      child: const Text(
+                                        'OK',
+                                        style: TextStyle(color: Colors.blue),
+                                      ),
                                     ),
-                                  ),
-                                ],
-                              ),
-                            );
-                              // return true;
-                            } else {
-                              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                                content: Text(response["status"]),
-                              ));
-                            })
-                          }
+                                  ],
+                                ),
+                              );
+                            }));
+                      } else {
+                        showDialog(
+                            context: context,
+                            builder: ((context) {
+                              return Dialog(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                elevation: 15,
+                                child: ListView(
+                                  padding: const EdgeInsets.only(
+                                      top: 20, bottom: 20),
+                                  shrinkWrap: true,
+                                  children: <Widget>[
+                                    Center(
+                                      child: Text(
+                                        "Login gagal! ${response['message']}",
+                                        style: const TextStyle(
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ),
+                                    const SizedBox(height: 30),
+                                    TextButton(
+                                      onPressed: () {
+                                        // pop untuk menutup dialog box
+                                        Navigator.pop(context);
+                                      },
+                                      child: const Text(
+                                        'OK',
+                                        style: TextStyle(color: Colors.blue),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              );
+                            }));
+                      }
+                    }
                   },
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all(Colors.blue),
                   ),
                   child: const Text(
-                    "Simpan",
+                    "Login",
                     style: TextStyle(color: Colors.white),
                   ),
                 ),
