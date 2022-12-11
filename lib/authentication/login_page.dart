@@ -104,7 +104,8 @@ class _LoginPageState extends State<LoginPage> {
                   onPressed: () async {
                     if (_loginPageFormKey.currentState!.validate()) {
                       final response = await requester
-                          .login("http://e-waste-bank.up.railway.app/auth/login/", { // TODO ganti ke url local masing2 buat develop and debug
+                          .login("https://e-waste-bank.up.railway.app/auth/login/", {
+                        // TODO ganti ke url local masing2 buat develop and debug
                         'username': username,
                         'password': password,
                       });

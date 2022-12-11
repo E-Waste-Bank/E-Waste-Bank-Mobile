@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:keuangan/models/admin_cashout_model.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:e_waste_bank_mobile/authentication/user_provider.dart';
 import 'package:e_waste_bank_mobile/main.dart';
@@ -16,13 +16,12 @@ class MyDrawer extends StatefulWidget {
 }
 
 class _MyDrawerState extends State<MyDrawer> {
-  late bool isAuthenticated;
-  late bool isAdmin;
-
   @override
   Drawer build(BuildContext context) {
-    isAuthenticated = context.watch<UserProvider>().isAuthenticated();
-    isAdmin = context.watch<UserProvider>().isAdmin();
+    final requester = context.watch<CookieRequest>();
+
+    UserProvider userProvider = context.watch<UserProvider>();
+
     return Drawer(
         child: Column(children: [
       ListTile(
@@ -39,30 +38,53 @@ class _MyDrawerState extends State<MyDrawer> {
                 MaterialPageRoute(
                     builder: (context) => const TipsAndTrickPage()));
           }),
-      ListTile(
-          title: const Text('Add Tips And Tricks Article'),
-          onTap: () {
-            Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => const AddTipsAndTrickPage()));
-          }),
-      ListTile(
-          title: const Text('Login COBA'),
-          onTap: () {
-            Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => const LoginPage()));
-          }),
-      ListTile(
-          title: const Text('Register'),
-          onTap: () {
-            Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => const RegisterPage()));
-          }),
+      Visibility(
+        visible: userProvider.isAdmin(),
+        child: ListTile(
+            title: const Text('Add Tips And Tricks Article'),
+            onTap: () {
+              Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const AddTipsAndTrickPage()));
+            }),
+      ),
+      Visibility(
+        visible: !userProvider.isAuthenticated(),
+        child: ListTile(
+            title: const Text('Login COBA'),
+            onTap: () {
+              Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: (context) => const LoginPage()));
+            }),
+      ),
+      Visibility(
+        visible: !userProvider.isAuthenticated(),
+        child: ListTile(
+            title: const Text('Register'),
+            onTap: () {
+              Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const RegisterPage()));
+            }),
+      ),
+      Visibility(
+        visible: userProvider.isAuthenticated(),
+        child: ListTile(
+            title: const Text('Logout'),
+            onTap: () async {
+              await requester
+                  .logout("https://e-waste-bank.up.railway.app/auth/logout/");
+
+              // ignore: use_build_context_synchronously
+              context.watch<UserProvider>().logout();
+
+              // ignore: use_build_context_synchronously
+              Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: (context) => const MyHomePage()));
+            }),
+      ),
     ]));
   }
 }
