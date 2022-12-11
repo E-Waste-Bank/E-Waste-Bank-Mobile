@@ -6,7 +6,14 @@ import 'package:e_waste_bank_mobile/authentication/user_provider.dart';
 import 'package:e_waste_bank_mobile/drawer.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider(
+        create: (_) => UserProvider(),
+      )
+    ],
+    child: const MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -14,11 +21,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: <Provider>[
-        Provider<CookieRequest>(create: (_) => CookieRequest()),
-        Provider<UserProvider>(create: (_) => UserProvider()),
-      ],
+    return Provider(
+      create: ((_) {
+        CookieRequest request = CookieRequest();
+        return request;
+      }),
       child: MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
