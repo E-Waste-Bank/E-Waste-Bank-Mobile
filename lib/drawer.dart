@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:e_waste_bank_mobile/main.dart';
 import 'package:tips_and_tricks/page/list_tips_and_trick.dart';
 import 'package:tips_and_tricks/page/add_tips_and_trick.dart';
+import 'package:about_us/about_us.dart';
 
 class MyDrawer extends StatefulWidget {
   const MyDrawer({super.key});
@@ -40,6 +41,15 @@ class _MyDrawerState extends State<MyDrawer> {
             Navigator.pushReplacement(
               context, 
               MaterialPageRoute(builder: (context) => const AddTipsAndTrickPage())
+            );
+          }
+        ),
+        ListTile(
+          title: const Text('About Us'),
+          onTap: () {
+            Navigator.pushReplacement(
+              context, 
+              MaterialPageRoute(builder: (context) => AboutUsPage())
             );
           }
         ),
