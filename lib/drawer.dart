@@ -33,7 +33,7 @@ class _MyDrawerState extends State<MyDrawer> {
                 MaterialPageRoute(builder: (context) => const MyHomePage()));
           }),
       ListTile(
-          title: const Text('Tips And Trick'),
+          title: const Text('Tips And Tricks'),
           onTap: () {
             Navigator.pushReplacement(
                 context,
