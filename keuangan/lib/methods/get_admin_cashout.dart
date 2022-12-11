@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:keuangan/models/admin_cashout_model.dart';
 
-Future<List<Cashout>> fetchToDo() async {
+Future<List<Cashout>> fetchAdminCashout() async {
   var url = Uri.parse('https://e-waste-bank.up.railway.app/keuangan/json/admin-cashouts/');
   var response = await http.get(
     url,
