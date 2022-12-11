@@ -28,7 +28,7 @@ class _LoginPageState extends State<LoginPage> {
     Future<bool> loginPOST() async {
       if (_loginPageFormKey.currentState!.validate()) {
         final response =
-            await requester.login("http://192.168.88.11:8000/auth/login/", {
+            await requester.login("http://e-waste-bank.up.railway.app/auth/login/", {
           'username': username,
           'password': password,
         });
