@@ -1,11 +1,11 @@
 import 'package:tips_and_tricks/model/TipsAndTrick.dart';
 import 'package:flutter/material.dart';
 import 'package:e_waste_bank_mobile/drawer.dart';
-import 'package:tips_and_tricks/util/fetch_tips_and_trick.dart';
-import 'package:tips_and_tricks/page/list_tips_and_trick.dart';
-import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
-import 'package:url_launcher/url_launcher_string.dart';
+// import 'package:tips_and_tricks/util/fetch_tips_and_trick.dart';
+// import 'package:tips_and_tricks/page/list_tips_and_trick.dart';
+// import 'package:flutter/material.dart';
+// import 'package:url_launcher/url_launcher.dart';
+// import 'package:url_launcher/url_launcher_string.dart';
 
 class DetailTipsAndTrick extends StatelessWidget{
   final TipsAndTrick tipsAndTrick;
@@ -17,7 +17,7 @@ class DetailTipsAndTrick extends StatelessWidget{
       appBar: AppBar(
         title: const Text('Tips And Trick'),
       ),
-      drawer: MyDrawer(),
+      drawer: const MyDrawer(),
       body: SafeArea(
         bottom: false,
         child: Stack(
@@ -55,8 +55,8 @@ class DetailTipsAndTrick extends StatelessWidget{
                     right: 19,
                     top: 16,
                   ),
-                  decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.only(
+                  decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(30),
                       topRight: Radius.circular(30),
                     ),
@@ -65,7 +65,7 @@ class DetailTipsAndTrick extends StatelessWidget{
                       BoxShadow(
                         spreadRadius: 3,
                         blurRadius: 7,
-                        offset: const Offset(
+                        offset: Offset(
                           0,
                           2,
                         ),

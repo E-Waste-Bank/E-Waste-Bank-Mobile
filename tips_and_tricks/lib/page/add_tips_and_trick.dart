@@ -22,18 +22,22 @@ class _AddTipsAndTrickPage extends State<AddTipsAndTrickPage> {
   final _clearBriefDescription = TextEditingController();
   String title = "";
   String source = "";
+  // ignore: non_constant_identifier_names
   DateTime? _publised_date;
+  // ignore: non_constant_identifier_names
   String image_url = "";
+  // ignore: non_constant_identifier_names
   String article_url = "";
+  // ignore: non_constant_identifier_names
   String brief_description = "";
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Add Tips & Tricks Article'),
+          title: const Text('Add Tips & Tricks Article'),
         ),
-        drawer: MyDrawer(),
+        drawer: const MyDrawer(),
         body: SingleChildScrollView(
             child: Form(
                 key: _formKey,
@@ -247,6 +251,7 @@ class _AddTipsAndTrickPage extends State<AddTipsAndTrickPage> {
                                     Align(
                                       alignment: Alignment.bottomCenter,
                                       child: TextButton(
+                                        // ignore: sort_child_properties_last
                                         child: const Text("Submit",
                                           style: TextStyle(
                                               color: Colors.white),),
@@ -261,6 +266,7 @@ class _AddTipsAndTrickPage extends State<AddTipsAndTrickPage> {
                                               _publised_date != null) {
                                             String publisedDate = _publised_date
                                                 .toString().substring(0, 10);
+                                            // ignore: unnecessary_new
                                             TipsAndTrick tipsAndTrick = new TipsAndTrick(
                                                 user: username,
                                                 title: title,
@@ -274,6 +280,7 @@ class _AddTipsAndTrickPage extends State<AddTipsAndTrickPage> {
                                                 .showSnackBar(
                                                 SnackBar(
                                                   backgroundColor: Colors.green,
+                                                  // ignore: prefer_const_constructors
                                                   content: Text(
                                                       "Data berhasil ditambahkan!"),
                                                   action: SnackBarAction(
@@ -301,6 +308,7 @@ class _AddTipsAndTrickPage extends State<AddTipsAndTrickPage> {
                                                 .showSnackBar(
                                                 SnackBar(
                                                   backgroundColor: Colors.red,
+                                                  // ignore: prefer_const_constructors
                                                   content: Text(
                                                       "Mohon isi data dengan lengkap!"),
                                                   action: SnackBarAction(
