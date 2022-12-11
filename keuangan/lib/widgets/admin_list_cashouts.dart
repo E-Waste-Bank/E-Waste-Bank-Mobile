@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:keuangan/models/user_cashout.dart';
 import 'package:e_waste_bank_mobile/drawer.dart';
 import 'package:keuangan/methods/get_admin_cashout.dart';
 import 'package:keuangan/models/admin_cashout_model.dart';
