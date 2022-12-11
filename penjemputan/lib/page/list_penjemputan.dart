@@ -1,25 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:e_waste_bank_mobile/drawer.dart';
-import 'package:penjemputan/util/fetch_penjemputan.dart';
+import 'package:penjemputan/util/function_fetch_penjemputan.dart';
 import 'package:penjemputan/page/detail_penjemputan.dart';
 
-class penjemputanPage extends StatefulWidget {
-  const penjemputanPage({super.key});
+class PenjemputanPage extends StatefulWidget {
+  const PenjemputanPage({super.key});
 
   @override
-  State<penjemputanPage> createState() => _penjemputanPage();
+  State<PenjemputanPage> createState() => _PenjemputanPage();
 }
 
-class _penjemputanPage extends State<penjemputanPage> {
+class _PenjemputanPage extends State<PenjemputanPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('penjemputan'),
+        title: const Text('penjemputan'),
       ),
-      drawer: MyDrawer(),
+      drawer: const MyDrawer(),
       body: FutureBuilder(
-        future: fetch_penjemputan_item(),
+        future: fetchPenjemputanItem(),
         builder: (context, AsyncSnapshot snapshot) {
           if (snapshot.data == null) {
             return const Center(child: CircularProgressIndicator());
@@ -41,14 +41,14 @@ class _penjemputanPage extends State<penjemputanPage> {
                   child: Card(
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
-                      side: BorderSide(color: Colors.blue)
+                      side: const BorderSide(color: Colors.blue)
                     ),
 
                     child: Container(
                       padding: const EdgeInsets.symmetric(horizontal: 3, vertical: 3),
                       child: ListTile(
                         title: Text(
-                          "${snapshot.data![index].jenis_sampah}",
+                          "${snapshot.data![index].jenisSampah}",
                         ),
                         
                         onTap: () {
@@ -56,7 +56,7 @@ class _penjemputanPage extends State<penjemputanPage> {
                               context,
                               MaterialPageRoute(
                                 builder: (context) =>
-                                  detailPenjemputan(
+                                  DetailPenjemputan(
                                     penjemputanItem: snapshot.data![index],
                                   )
                               ),

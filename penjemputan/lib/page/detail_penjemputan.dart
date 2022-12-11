@@ -1,15 +1,11 @@
 import 'package:penjemputan/model/penjemputan_item.dart';
 import 'package:flutter/material.dart';
 import 'package:e_waste_bank_mobile/drawer.dart';
-import 'package:penjemputan/util/fetch_penjemputan.dart';
 import 'package:penjemputan/page/list_penjemputan.dart';
-import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
-import 'package:url_launcher/url_launcher_string.dart';
 
-class detailPenjemputan extends StatelessWidget {
-  final penjemputan_item penjemputanItem;
-  const detailPenjemputan({super.key, required this.penjemputanItem});
+class DetailPenjemputan extends StatelessWidget {
+  final PenjemputanItem penjemputanItem;
+  const DetailPenjemputan({super.key, required this.penjemputanItem});
 
   @override
   Widget build(BuildContext context) {
@@ -17,24 +13,22 @@ class detailPenjemputan extends StatelessWidget {
       appBar: AppBar(
         title: const Text('detail penjemputan'),
       ),
-      drawer: MyDrawer(),
+      drawer: const MyDrawer(),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Container(
-            child: Text(
-              penjemputanItem.jenis_sampah,
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
+          Text(
+            penjemputanItem.jenisSampah,
+            style: const TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
             ),
           ),
           Container(
             alignment: Alignment.centerLeft,
             child: Text(
-              'Alamat: ' + penjemputanItem.alamat,
-              style: TextStyle(
+              'Alamat: ${penjemputanItem.alamat}',
+              style: const TextStyle(
                 fontSize: 20,
               ),
             ),
@@ -42,22 +36,22 @@ class detailPenjemputan extends StatelessWidget {
           ),
           Container(
             alignment: Alignment.centerLeft,
-            child: Text('berat sampah: ' + penjemputanItem.berat_sampah.toString(),
-                style: TextStyle(
+            child: Text('berat sampah: ${penjemputanItem.beratSampah}',
+                style: const TextStyle(
                   fontSize: 20,
                 )),
           ),
           Container(
             alignment: Alignment.centerLeft,
-            child: Text('tanggal: ' + penjemputanItem.tanggal_jemput,
-                style: TextStyle(
+            child: Text('tanggal: ${penjemputanItem.tanggalJemput}',
+                style: const TextStyle(
                   fontSize: 20,
                 )),
           ),
           Container(
             alignment: Alignment.centerLeft,
-            child: Text('waktu: ' + penjemputanItem.waktu_jemput,
-                style: TextStyle(
+            child: Text('waktu: ${penjemputanItem.waktuJemput}',
+                style: const TextStyle(
                   fontSize: 20,
                 )),
           ),
@@ -67,11 +61,11 @@ class detailPenjemputan extends StatelessWidget {
         onPressed: () {
           Navigator.pushReplacement(
             context,
-            MaterialPageRoute(builder: (context) => penjemputanPage()),
+            MaterialPageRoute(builder: (context) => const PenjemputanPage()),
           );
         },
-        child: const Icon(Icons.arrow_back),
         backgroundColor: Colors.blue,
+        child: const Icon(Icons.arrow_back),
       ),
     );
   }

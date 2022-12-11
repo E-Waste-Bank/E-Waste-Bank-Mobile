@@ -15,9 +15,9 @@ class _TipsAndTrickPage extends State<TipsAndTrickPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Tips And Trick'),
+        title: const Text('Tips And Trick'),
       ),
-      drawer: MyDrawer(),
+      drawer: const MyDrawer(),
       body: FutureBuilder(
         future: fetchTipsAndTrick(),
         builder: (context, AsyncSnapshot snapshot) {
@@ -41,7 +41,7 @@ class _TipsAndTrickPage extends State<TipsAndTrickPage> {
                   child: Card(
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
-                      side: BorderSide(color: Colors.blue)
+                      side: const BorderSide(color: Colors.blue)
                     ),
 
                     child: Container(
