@@ -40,7 +40,7 @@ Berikut ini beberapa fitur yang disediakan pada aplikasi E-Waste Bank:
 Fitur ini akan menampilkan deskripsi singkat mengenai E-Waste Bank. User juga dapat memberikan feedback dan melihat 3 feedback terbaru. 
 
 ### 🚚 Request Penjemputan - [Ibni Shaquille Syauqi Ibrahim](https://github.com/IbniShaquille)
-Fitur ini akan menampilkan
+Fitur ini akan menampilkan daftar barang elektronik yang dapat dijemput oleh E-Waste Bank. User dapat memilih barang elektronik yang ingin dijemput dan mengisi form yang tersedia. Setelah itu, user dapat melihat status request penjemputan yang telah diajukan.
 
 ### 💡 Tips and Tricks - [Hayfa Najma](https://github.com/HayfaNajma07)
 Fitur ini akan menampilkan informasi tentang tips dan tricks mengenai pengelolaan sampah elektronik yang baik dan informasi lainnya yang terkait dengan sampah elektronik dalam bentuk card. Lalu, untuk role admin dapat menambahkan tips and tricks baru.
