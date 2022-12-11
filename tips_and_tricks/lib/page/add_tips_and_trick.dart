@@ -255,7 +255,7 @@ class _AddTipsAndTrickPage extends State<AddTipsAndTrickPage> {
                                               .all(Colors.blue),
                                         ),
                                         onPressed: () {
-                                          final username = context.watch<UserProvider>().getUsername();
+                                          final username = Provider.of<UserProvider>(context, listen: false).getUsername();
                                           if (_formKey.currentState!
                                               .validate() &&
                                               _publised_date != null) {
