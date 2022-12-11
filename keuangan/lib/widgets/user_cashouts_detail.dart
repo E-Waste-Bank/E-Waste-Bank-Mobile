@@ -1,4 +1,3 @@
-// TODO import 'package:e_waste_bank_mobile/widget/drawer.dart';
 import 'package:flutter/material.dart';
 // import 'package:intl/intl.dart';
 
@@ -21,7 +20,6 @@ class CashoutDetailPage extends StatelessWidget {
         appBar: AppBar(
           title: const Text('Detail'),
         ),
-        drawer: const MyDrawer(), // TODO add to drawer
         body: Container(
           margin: const EdgeInsets.all(7.5),
           child: Column(
@@ -30,7 +28,7 @@ class CashoutDetailPage extends StatelessWidget {
             children: <Widget>[
               Expanded(
                 child: Text(
-                  "Penarikan (ID: ${cashouts.pk}",
+                  "Penarikan (ID: ${cashouts.pk})",
                   textAlign: TextAlign.center,
                   style: const TextStyle(
                       fontSize: 28, fontWeight: FontWeight.bold),
@@ -52,7 +50,6 @@ class CashoutDetailPage extends StatelessWidget {
                   )
                 ],
               ),
-              const SizedBox(height: smallHeight),
               const SizedBox(height: smallHeight),
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -90,6 +87,7 @@ class CashoutDetailPage extends StatelessWidget {
                   ))
             ],
           ),
-        ));
+        ),
+      );
   }
 }
