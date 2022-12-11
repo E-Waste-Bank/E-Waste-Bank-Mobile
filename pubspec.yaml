@@ -32,10 +32,28 @@ dependencies:
   flutter:
     sdk: flutter
 
+  tips_and_tricks:
+    path: tips_and_tricks
+
+  http: ^0.13.5
+  pbp_django_auth: ^0.2.2
+  provider: ^6.0.4
+  modal_bottom_sheet: ^2.1.2
+  url_launcher: ^6.1.7
+
+  keuangan:
+    path: keuangan
+
+  about_us:
+    path: about_us
+
+  penjemputan:
+    path: penjemputan
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
+  intl: ^0.17.0
 
 dev_dependencies:
   flutter_test:

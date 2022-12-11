@@ -1,5 +1,5 @@
 # 🍃 E-Waste Bank 🍃
-![Staging](https://github.com/E-Waste-Bank/e_waste_bank_mobile/actions/workflows/staging.yml/badge.svg) ![Pre-release](https://github.com/E-Waste-Bank/e_waste_bank_mobile/actions/workflows/pre-release.yml/badge.svg) ![Release](https://github.com/E-Waste-Bank/e_waste_bank_mobile/actions/workflows/release.yml/badge.svg) [![Build status](https://build.appcenter.ms/v0.1/apps/f8e0058f-2ee0-48a6-a041-87b3d1ab2b71/branches/main/badge)](https://appcenter.ms)
+[![Staging](https://github.com/E-Waste-Bank/e_waste_bank_mobile/actions/workflows/staging.yml/badge.svg)](https://github.com/E-Waste-Bank/e_waste_bank_mobile/actions/workflows/staging.yml) [![Pre-release](https://github.com/E-Waste-Bank/e_waste_bank_mobile/actions/workflows/pre-release.yml/badge.svg)](https://github.com/E-Waste-Bank/e_waste_bank_mobile/actions/workflows/pre-release.yml) [![Release](https://github.com/E-Waste-Bank/e_waste_bank_mobile/actions/workflows/release.yml/badge.svg)](https://github.com/E-Waste-Bank/e_waste_bank_mobile/actions/workflows/release.yml) [![Build status](https://build.appcenter.ms/v0.1/apps/f8e0058f-2ee0-48a6-a041-87b3d1ab2b71/branches/main/badge)](https://appcenter.ms)
 
 ## Mobile (flutter)
 > Proyek ini dibuat untuk memenuhi tugas Proyek Akhir Semester (PAS)
@@ -37,22 +37,21 @@ Berikut ini adalah langkah-langkah yang akan dilakukan untuk mengintegrasikan ap
 ## 👥 Daftar Modul dan Alur Pengintegrasian 👥
 Berikut ini beberapa fitur yang disediakan pada aplikasi E-Waste Bank:
 ### 🔎 About Us- [Riona Adani Ghaisani](https://github.com/rionadani)
-Fitur ini akan menampilkan
+Fitur ini akan menampilkan deskripsi singkat mengenai E-Waste Bank. User juga dapat memberikan feedback dan melihat 3 feedback terbaru. 
 
 ### 🚚 Request Penjemputan - [Ibni Shaquille Syauqi Ibrahim](https://github.com/IbniShaquille)
-Fitur ini akan menampilkan
+Fitur ini akan menampilkan daftar barang elektronik yang dapat dijemput oleh E-Waste Bank. User dapat memilih barang elektronik yang ingin dijemput dan mengisi form yang tersedia. Setelah itu, user dapat melihat status request penjemputan yang telah diajukan.
 
 ### 💡 Tips and Tricks - [Hayfa Najma](https://github.com/HayfaNajma07)
 Fitur ini akan menampilkan informasi tentang tips dan tricks mengenai pengelolaan sampah elektronik yang baik dan informasi lainnya yang terkait dengan sampah elektronik dalam bentuk card. Lalu, untuk role admin dapat menambahkan tips and tricks baru.
 
 ### 💰 Manage Keuangan
 ### 💸 User - [Hugo Sulaiman Setiawan](https://github.com/hugo-setiawan)
-
-Fitur ini akan menampilkan
+Fitur ini akan menampilkan jumlah saldo yang dimiliki user (yang akan diatur lebih lanjut oleh *admin* pada modul Manage Keuangan - Admin). Selain itu, fitur ini juga memungkinkan pengguna untuk me-*request* penarikan uang melalui fitur *Cashout*. *Request* penarikan uang yang dibuat akan disimpan pada server, kemudian *admin* akan menyetujui penarikan tersebut. 
     
 ### 💸 Admin - [Raditya Aditama](https://github.com/ratama98)
 
-Fitur ini akan menampilkan
+Apabila pengguna yang sedang login merupakan seorang admin, fitur ini akan menampilkan halaman manage keuangan admin di mana admin tersebut dapat melakukan hal-hal berikut: mengakses data keuangan dan data cashout semua user, menyetujui request cashout dari user, dan mengatur keuangan user.
 
 ---------------------------
 ## 👩🏻‍💻 Persona Aplikasi 👩🏻‍💻
@@ -60,7 +59,7 @@ Fitur ini akan menampilkan
 - Pada halaman about us, admin dapat melihat tentang aplikasi E-Waste Bank, feedback orang lain mengenai aplikasi, dan dapat memberikan feedback.
 - Pada halaman tips and tricks, admin dapat melihat berbagai tips dan tricks dan mencari tips dan tricks, serta menambahkan tips dan tricks baru.
 - Pada halaman Request Penjemputan, admin dapat melakukan request penjemputan sampah dan mengisi detail penjemputan sampah yang telah ditentukan. Lalu, admin juga dapat melihat detail penjemputannya, serta memperbarui status request penjemputan dan melakukan penghapusan request.
-- Pada halaman Manage Keuangan, admin dapat membuat penarikan baru.
+- Pada halaman Manage Keuangan, admin dapat mengakses data keuangan dan data cashout semua user, menyetujui request cashout dari user, dan mengatur keuangan user.
 
 ### 🔒 User Yang Tidak Login 🔒
 - Pada halaman about us, user dapat melihat tentang aplikasi E-Waste Bank, feedback orang lain mengenai aplikasi, dan dapat memberikan feedback.
