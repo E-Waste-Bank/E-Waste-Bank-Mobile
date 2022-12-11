@@ -11,6 +11,9 @@ dependencies:
   flutter:
     sdk: flutter
 
+  e_waste_bank_mobile:
+    path: ../.
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
