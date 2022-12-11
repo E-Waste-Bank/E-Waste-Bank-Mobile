@@ -17,9 +17,9 @@ class _UserListCashoutsPageState extends State<UserListCashoutsPage> {
   late Future<List<Cashouts>> fetchedCashouts;
 
   Future<List<Cashouts>> fetchCashouts() async {
-    final request = context.watch<CookieRequest>();
-    var data = await request
-        .get("http://localhost:8000/keuangan/json/user-cashouts-api/");
+    final requester = Provider.of<CookieRequest>(context, listen: false);
+    var data = await requester
+        .get("https://e-waste-bank.up.railway.app/keuangan/json/user-cashouts-api/");
 
     List<Cashouts> listCashouts = [];
     for (var each in data) {

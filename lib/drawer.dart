@@ -89,7 +89,7 @@ class _MyDrawerState extends State<MyDrawer> {
                   .logout("https://e-waste-bank.up.railway.app/auth/logout/");
 
               // ignore: use_build_context_synchronously
-              context.watch<UserProvider>().logout();
+              Provider.of<UserProvider>(context, listen: false).logout();
 
               // ignore: use_build_context_synchronously
               Navigator.pushReplacement(context,
