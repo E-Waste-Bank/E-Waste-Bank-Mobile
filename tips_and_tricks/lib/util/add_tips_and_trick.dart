@@ -12,5 +12,4 @@ Future<void> addTipsAndTrick(TipsAndTrick tipsAndTrick) async {
     },
     body:jsonEncode(tipsAndTrick)
   );
-  // return jsonDecode(response.body)["success"];
 }
