@@ -1,6 +1,7 @@
 import 'package:e_waste_bank_mobile/drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:about_us/page/list_feedback.dart';
+import 'package:about_us/page/add_feedack.dart';
 
 class AboutUsPage extends StatefulWidget {
   const AboutUsPage({Key? key}) : super(key: key);
@@ -41,7 +42,7 @@ class _AboutUsPageState extends State<AboutUsPage> {
                           ),
                         ),
                         Text(
-                          "Kami hadir untuk memudahkan masyarakat untuk mengumpulkan dan mengelola barang elektronik yang sudah tidak layak pakai. Melalui aplikasi ini, masyarakat dapat mendapatkan uang melalui menjual barang elektronik yang sudah tidak layak pakai, yang nantinya akan dijemput oleh kami. \nSelain itu, kami memberikan informasi tips dan tricks mengenai pengelolaan E Waste.",
+                          "Kami hadir untuk memudahkan masyarakat untuk mengumpulkan dan mengelola barang elektronik yang sudah tidak layak pakai. Melalui aplikasi ini, masyarakat dapat mendapatkan uang melalui menjual barang elektronik yang sudah tidak layak pakai, yang nantinya akan dijemput oleh kami. Selain itu, kami memberikan informasi tips dan tricks mengenai pengelolaan E Waste.",
                           textAlign: TextAlign.justify,
                           style: TextStyle(
                             fontSize: 20,
@@ -55,20 +56,40 @@ class _AboutUsPageState extends State<AboutUsPage> {
                             fontSize: 30,
                           ),
                         ),
-                        TextButton(
-                          style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all(Colors.blue),
-                          ),
-                          onPressed: () {
-                            Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => const ListFeedbackPage()),
-                          );
-                          },
-                          child: const Text(
-                            "Liat",
-                            style: TextStyle(color: Colors.white),
-                          ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            TextButton(
+                              style: ButtonStyle(
+                                backgroundColor: MaterialStateProperty.all(Colors.blue),
+                              ),
+                              onPressed: () {
+                                Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => const AddFeedbackPage()),
+                              );
+                              },
+                              child: const Text(
+                                "Add Feedback",
+                                style: TextStyle(color: Colors.white),
+                              ),
+                            ),
+                            TextButton(
+                              style: ButtonStyle(
+                                backgroundColor: MaterialStateProperty.all(Colors.blue),
+                              ),
+                              onPressed: () {
+                                Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => const ListFeedbackPage()),
+                              );
+                              },
+                              child: const Text(
+                                "See Feedback",
+                                style: TextStyle(color: Colors.white),
+                              ),
+                            ),
+                          ],
                         ),
                       ],
                     ),

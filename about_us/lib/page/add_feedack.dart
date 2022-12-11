@@ -19,7 +19,7 @@ class _AddFeedbackPageState extends State<AddFeedbackPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Form'),
+        title: Text('Add Your Feedback'),
       ),
       // Menambahkan drawer menu
       drawer: const MyDrawer(),
@@ -126,6 +126,7 @@ class _AddFeedbackPageState extends State<AddFeedbackPage> {
                                 ),
                               ],
                             ),
+                            
                           );
                         },
                       );
@@ -135,6 +136,12 @@ class _AddFeedbackPageState extends State<AddFeedbackPage> {
                     "Simpan",
                     style: TextStyle(color: Colors.white),
                   ),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: const Text('Kembali'),
                 ),
               ],
             ),

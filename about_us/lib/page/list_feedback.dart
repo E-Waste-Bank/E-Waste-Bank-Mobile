@@ -47,7 +47,7 @@ class _ListFeedbackPageState extends State<ListFeedbackPage> {
 
     return Scaffold(
         appBar: AppBar(
-          title: const Text('My Watchlist'),
+          title: const Text('Feedbacks'),
         ),
         drawer: const MyDrawer(),
         body: FutureBuilder(
@@ -70,60 +70,34 @@ class _ListFeedbackPageState extends State<ListFeedbackPage> {
                   );
                 } else {
                   return ListView.builder(
-                      itemCount: snapshot.data!.length,
-                      itemBuilder: (_, index)=> Container(
-                        margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                        padding: const EdgeInsets.all(20.0),
-                        decoration: BoxDecoration(
-                            color:Colors.white,
-                            borderRadius: BorderRadius.circular(15.0),
-                            boxShadow: const [
-                              BoxShadow(
-                                  color: Colors.black,
-                                  blurRadius: 2.0
-                              )
-                            ]
+                    itemCount: snapshot.data!.length,
+                    itemBuilder: (_, index)=> Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+                      child: Card(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          side: BorderSide(color: Colors.blue)
                         ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "${snapshot.data![index].fields.yourFeedback}",
-                              style: const TextStyle(
-                                fontSize: 18.0,
-                                fontWeight: FontWeight.bold,
-                              ),
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 3, vertical: 3),
+                          child: ListTile(
+                            title: Text(
+                              "${snapshot.data![index].fields.yourFeedback}"
                             ),
-                            Padding(
+                            subtitle: Padding(
                               padding: EdgeInsets.all(5.0),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text("${snapshot.data![index].fields.name}"),
-                                  
                                   Text("${snapshot.data![index].fields.date}"),
                                 ],
                               ),
                             ),
-                            TextButton(
-                              style: ButtonStyle(
-                                backgroundColor: MaterialStateProperty.all(Colors.blue),
-                              ),
-                              onPressed: () {
-                                Navigator.push(
-                                context,
-                                MaterialPageRoute(builder: (context) => const AddFeedbackPage()),
-                              );
-                              },
-                              child: const Text(
-                                "Add Feedback",
-                                style: TextStyle(color: Colors.white),
-                              ),
-                            ),
-                          ],
+                          ),
                         ),
                       ),
+                    )
                   );
                 }
               }
