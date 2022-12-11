@@ -18,7 +18,7 @@ class _AdminListCashoutsPageState extends State<AdminListCashoutsPage> {
   @override
   void initState() {
     super.initState();
-    fetchedCashouts = fetchAdminCashout();
+    fetchedCashouts = fetchAdminCashout(context);
   }
 
   @override
@@ -65,30 +65,22 @@ class _AdminListCashoutsPageState extends State<AdminListCashoutsPage> {
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
-                              Row(
-                                children: <Widget>[
-                                  Expanded(
-                                    child: Text(
-                                      "${snapshot.data![index].pk}. ${snapshot.data![index].fields.user}",
-                                      style: const TextStyle(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
+                              ListTile(
+                                title: Text(
+                                  "${snapshot.data![index].pk}. ${snapshot.data![index].fields.user}",
+                                  style: const TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
                                   ),
-                                ],
-                              ),
-                              Row(
-                                children: <Widget>[
-                                  Expanded(
-                                    child: Text(
-                                      "Nominal: Rp.${snapshot.data![index].fields.amount}",
-                                      style: const TextStyle(
-                                        fontSize: 14,
-                                      ),
-                                    ),
+                                ),
+                                subtitle: Text(
+                                  "Nominal: Rp.${snapshot.data![index].fields.amount}",
+                                  style: const TextStyle(
+                                    fontSize: 14,
                                   ),
-                                ],
+                                ),
+                                // trailing: ,
+                                onTap: () {},
                               ),
                             ],
                           ),
@@ -96,15 +88,14 @@ class _AdminListCashoutsPageState extends State<AdminListCashoutsPage> {
               }
             }
           }),
-      floatingActionButton: FloatingActionButton.extended (
+      floatingActionButton: FloatingActionButton.extended(
         label: const Text('Keuangan'),
         onPressed: () {
           Navigator.pushReplacement(
               context,
-              MaterialPageRoute(builder: (context) =>
-              const AdminListKeuanganPage(),
-              )
-          );
+              MaterialPageRoute(
+                builder: (context) => const AdminListKeuanganPage(),
+              ));
         },
       ),
     );

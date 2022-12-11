@@ -18,7 +18,7 @@ class _AdminListKeuanganPageState extends State<AdminListKeuanganPage> {
   @override
   void initState() {
     super.initState();
-    fetchedKeuangan = fetchKeuanganAdmin();
+    fetchedKeuangan = fetchKeuanganAdmin(context);
   }
 
   @override
@@ -48,64 +48,50 @@ class _AdminListKeuanganPageState extends State<AdminListKeuanganPage> {
                 return ListView.builder(
                     itemCount: snapshot.data!.length,
                     itemBuilder: (_, index) => Container(
-                      margin: const EdgeInsets.symmetric(
-                          horizontal: 16, vertical: 12),
-                      padding: const EdgeInsets.all(20.0),
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(15.0),
-                          boxShadow: const [
-                            BoxShadow(
-                                color: Colors.grey,
-                                blurRadius: 5.0)
-                          ]),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          // ListTile(
-                          //
-                          // ),
-                          Row(
+                          margin: const EdgeInsets.symmetric(
+                              horizontal: 16, vertical: 12),
+                          padding: const EdgeInsets.all(20.0),
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(15.0),
+                              boxShadow: const [
+                                BoxShadow(color: Colors.grey, blurRadius: 5.0)
+                              ]),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
-                              Expanded(
-                                child: Text(
+                              ListTile(
+                                title: Text(
                                   "User: ${snapshot.data![index].fields.user}",
                                   style: const TextStyle(
                                     fontSize: 18,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
-                              ),
-                            ],
-                          ),
-                          Row(
-                            children: <Widget>[
-                              Expanded(
-                                child: Text(
+                                subtitle: Text(
                                   "Nominal: Rp.${snapshot.data![index].fields.uangUser}",
                                   style: const TextStyle(
                                     fontSize: 14,
                                   ),
                                 ),
+                                // trailing: ,
+                                onTap: () {},
                               ),
                             ],
                           ),
-                        ],
-                      ),
-                    ));
+                        ));
               }
             }
           }),
-      floatingActionButton: FloatingActionButton.extended (
+      floatingActionButton: FloatingActionButton.extended(
         label: const Text('Cashouts'),
         onPressed: () {
           Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(builder: (context) =>
-                const AdminListCashoutsPage(),
-            )
-          );
+              context,
+              MaterialPageRoute(
+                builder: (context) => const AdminListCashoutsPage(),
+              ));
         },
       ),
     );
