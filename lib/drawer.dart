@@ -7,6 +7,8 @@ import 'package:e_waste_bank_mobile/authentication/login_page.dart';
 import 'package:e_waste_bank_mobile/authentication/register.page.dart';
 import 'package:tips_and_tricks/page/list_tips_and_trick.dart';
 import 'package:tips_and_tricks/page/add_tips_and_trick.dart';
+import 'package:keuangan/widgets/admin_list_cashouts.dart';
+import 'package:keuangan/widgets/admin_list_keuangan.dart';
 // import 'package:penjemputan/page/list_penjemputan.dart';
 
 class MyDrawer extends StatefulWidget {
@@ -48,6 +50,15 @@ class _MyDrawerState extends State<MyDrawer> {
                   context,
                   MaterialPageRoute(
                       builder: (context) => const AddTipsAndTrickPage()));
+            }),
+      ),
+      Visibility(
+        visible: userProvider.isAdmin(),
+        child: ListTile(
+            title: const Text('Keuangan'),
+            onTap: () {
+              Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: (context) => const AdminListKeuanganPage()));
             }),
       ),
       Visibility(
