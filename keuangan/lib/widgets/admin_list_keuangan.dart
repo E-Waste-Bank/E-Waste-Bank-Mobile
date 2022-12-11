@@ -94,7 +94,8 @@ class _AdminListKeuanganPageState extends State<AdminListKeuanganPage> {
               }
             }
           }),
-      floatingActionButton: FloatingActionButton (
+      floatingActionButton: FloatingActionButton.extended (
+        label: const Text('Cashouts'),
         onPressed: () {
           Navigator.pushReplacement(
             context,

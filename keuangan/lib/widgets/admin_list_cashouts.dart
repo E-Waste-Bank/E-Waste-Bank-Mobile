@@ -96,7 +96,8 @@ class _AdminListCashoutsPageState extends State<AdminListCashoutsPage> {
               }
             }
           }),
-      floatingActionButton: FloatingActionButton (
+      floatingActionButton: FloatingActionButton.extended (
+        label: const Text('Keuangan'),
         onPressed: () {
           Navigator.pushReplacement(
               context,
