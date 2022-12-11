@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:tips_and_tricks/model/TipsAndTrick.dart';
 import 'package:e_waste_bank_mobile/drawer.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
+import 'package:e_waste_bank_mobile/authentication/user_provider.dart';
 
 class AddTipsAndTrickPage extends StatefulWidget {
   const AddTipsAndTrickPage({super.key});
@@ -48,7 +50,6 @@ class _AddTipsAndTrickPage extends State<AddTipsAndTrickPage> {
                                         decoration: InputDecoration(
                                           hintText: "Contoh: Kelebihan dari memakai totebag",
                                           labelText: "Title",
-                                          // icon: const Icon(Icons.add_circle),
                                           border: OutlineInputBorder(
                                             borderRadius: BorderRadius.circular(
                                                 5.0),
@@ -83,7 +84,6 @@ class _AddTipsAndTrickPage extends State<AddTipsAndTrickPage> {
                                         decoration: InputDecoration(
                                           hintText: "Contoh: Maya",
                                           labelText: "Article Source/Author",
-                                          // icon: const Icon(Icons.add_circle),
                                           border: OutlineInputBorder(
                                             borderRadius: BorderRadius.circular(
                                                 5.0),
@@ -128,7 +128,7 @@ class _AddTipsAndTrickPage extends State<AddTipsAndTrickPage> {
                                           firstDate: DateTime(2000),
                                           lastDate: DateTime(2099),
                                         ).then((date) {
-                                          //tambahkan setState dan panggil variabel _dateTime.
+                                          // Tambahkan setState dan panggil variabel _dateTime.
                                           setState(() {
                                             _publised_date = date;
                                           });
@@ -255,12 +255,14 @@ class _AddTipsAndTrickPage extends State<AddTipsAndTrickPage> {
                                               .all(Colors.blue),
                                         ),
                                         onPressed: () {
+                                          final username = context.watch<UserProvider>().getUsername();
                                           if (_formKey.currentState!
                                               .validate() &&
                                               _publised_date != null) {
                                             String publisedDate = _publised_date
                                                 .toString().substring(0, 10);
                                             TipsAndTrick tipsAndTrick = new TipsAndTrick(
+                                                user: username,
                                                 title: title,
                                                 source: source,
                                                 published_date: publisedDate,
