@@ -43,14 +43,14 @@ class Fields {
     required this.disbursed,
   });
 
-  User? user;
+  String user;
   int uangModel;
   double amount;
   bool approved;
   bool disbursed;
 
   factory Fields.fromJson(Map<String, dynamic> json) => Fields(
-    user: userValues.map[json["user"]],
+    user: json["user"],
     uangModel: json["uang_model"],
     amount: json["amount"].toDouble(),
     approved: json["approved"],
@@ -58,20 +58,13 @@ class Fields {
   );
 
   Map<String, dynamic> toJson() => {
-    "user": userValues.reverse![user],
+    "user": user,
     "uang_model": uangModel,
     "amount": amount,
     "approved": approved,
     "disbursed": disbursed,
   };
 }
-
-enum User { PEBEPE, CBKADAL }
-
-final userValues = EnumValues({
-  "cbkadal": User.CBKADAL,
-  "pebepe": User.PEBEPE
-});
 
 enum Model { KEUANGAN_CASHOUT }
 
