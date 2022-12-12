@@ -38,6 +38,19 @@ class _UserCreateCashoutsPageState extends State<UserCreateCashoutsPage> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TextFormField(
+                    enabled: false,
+                    initialValue: "10000", // TODO balance from provider
+                    decoration: InputDecoration(
+                      labelText: "Uang Tersedia",
+                      icon: const Icon(Icons.monetization_on),
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(5.0)),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextFormField(
                     keyboardType: const TextInputType.numberWithOptions(
                         signed: false, decimal: true),
                     inputFormatters: <TextInputFormatter>[
