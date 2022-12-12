@@ -1,3 +1,4 @@
+import 'package:about_us/about_us.dart';
 import 'package:e_waste_bank_mobile/authentication/user_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:keuangan/models/admin_cashout_model.dart';
@@ -161,7 +162,7 @@ class _LoginPageState extends State<LoginPage> {
                                             context,
                                             MaterialPageRoute(
                                                 builder: (context) =>
-                                                    const MyHomePage()));
+                                                    const AboutUsPage()));
                                       },
                                       child: const Text(
                                         'OK',
