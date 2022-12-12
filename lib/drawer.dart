@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:keuangan/providers/user_keuanganadmin_provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:penjemputan/page/list_penjemputan.dart';
 import 'package:penjemputan/page/add_penjemputan.dart';
@@ -6,11 +7,13 @@ import 'package:provider/provider.dart';
 import 'package:e_waste_bank_mobile/authentication/user_provider.dart';
 import 'package:e_waste_bank_mobile/main.dart';
 import 'package:e_waste_bank_mobile/authentication/login_page.dart';
-import 'package:e_waste_bank_mobile/authentication/register.page.dart';
 import 'package:tips_and_tricks/page/list_tips_and_trick.dart';
 import 'package:tips_and_tricks/page/add_tips_and_trick.dart';
+import 'package:keuangan/widgets/admin_list_cashouts.dart';
+import 'package:keuangan/widgets/admin_list_keuangan.dart';
 import 'package:about_us/about_us.dart';
 // import 'package:penjemputan/page/list_penjemputan.dart';
+import 'package:keuangan/widgets/user_list_cashouts.dart';
 
 class MyDrawer extends StatefulWidget {
   const MyDrawer({super.key});
@@ -28,12 +31,6 @@ class _MyDrawerState extends State<MyDrawer> {
 
     return Drawer(
         child: Column(children: [
-      ListTile(
-          title: const Text('Halaman Utama'),
-          onTap: () {
-            Navigator.pushReplacement(context,
-                MaterialPageRoute(builder: (context) => const MyHomePage()));
-          }),
       ListTile(
           title: const Text('About Us'),
           onTap: () {
@@ -53,8 +50,10 @@ class _MyDrawerState extends State<MyDrawer> {
         child: ListTile(
             title: const Text('penjemputan'),
             onTap: () {
-              Navigator.pushReplacement(context,
-                  MaterialPageRoute(builder: (context) => const PenjemputanPage()));
+              Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const PenjemputanPage()));
             }),
       ),
       Visibility(
@@ -80,23 +79,32 @@ class _MyDrawerState extends State<MyDrawer> {
             }),
       ),
       Visibility(
-        visible: !userProvider.isAuthenticated(),
+        visible: userProvider.isAuthenticated() && !userProvider.isAdmin(),
         child: ListTile(
-            title: const Text('Login COBA'),
+            title: const Text('Lihat Cashouts'),
+            onTap: () {
+              Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const UserListCashoutsPage()));
+            }),
+      ),
+      Visibility(
+        visible: userProvider.isAdmin(),
+        child: ListTile(
+            title: const Text('Keuangan'),
             onTap: () {
               Navigator.pushReplacement(context,
-                  MaterialPageRoute(builder: (context) => const LoginPage()));
+                  MaterialPageRoute(builder: (context) => const AdminListKeuanganPage()));
             }),
       ),
       Visibility(
         visible: !userProvider.isAuthenticated(),
         child: ListTile(
-            title: const Text('Register'),
+            title: const Text('Login'),
             onTap: () {
-              Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const RegisterPage()));
+              Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: (context) => const LoginPage()));
             }),
       ),
       Visibility(
@@ -110,9 +118,12 @@ class _MyDrawerState extends State<MyDrawer> {
               // ignore: use_build_context_synchronously
               Provider.of<UserProvider>(context, listen: false).logout();
 
+              Provider.of<UserKeuanganAdminProvider>(context, listen: false)
+                  .logout();
+
               // ignore: use_build_context_synchronously
               Navigator.pushReplacement(context,
-                  MaterialPageRoute(builder: (context) => const MyHomePage()));
+                  MaterialPageRoute(builder: (context) => const AboutUsPage()));
             }),
       ),
     ]));
