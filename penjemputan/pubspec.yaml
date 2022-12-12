@@ -13,6 +13,8 @@ dependencies:
 
   e_waste_bank_mobile:
     path: ../.
+  provider: ^6.0.4
+  http: ^0.13.5
 
 dev_dependencies:
   flutter_test:
