@@ -1,24 +1,18 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:penjemputan/model/penjemputan_item.dart';
-
+import 'package:provider/provider.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
 // Menerapkan pemanggilan asynchronous ke Web Service Django
-Future<List<PenjemputanItem>> fetchPenjemputanItem() async {
-  var url = Uri.parse('https://e-waste-bank.up.railway.app/penjemputan/json/');
-  var response = await http.get(
-    url,
-    headers: {
-      "Access-Control-Allow-Origin": "*",
-      "Content-Type": "application/json",
-    },
-  );
+Future<List<PenjemputanItem>> fetchPenjemputanItem(context) async {
+  final requester = Provider.of<CookieRequest>(context, listen: false);
 
-  // print(response.body);
-  var data = jsonDecode(utf8.decode(response.bodyBytes));
+  var data = await requester
+      .get("https://e-waste-bank.up.railway.app/penjemputan/json/");
   List<PenjemputanItem> listPenjemputanItem = [];
-  for (var d in data){
-    if (d != null){
-      listPenjemputanItem.add(PenjemputanItem.fromJson(d));
+  for (var each in data) {
+    if (each != null) {
+      listPenjemputanItem.add(PenjemputanItem.fromJson(each));
     }
   }
 

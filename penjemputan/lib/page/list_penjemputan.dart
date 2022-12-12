@@ -19,7 +19,7 @@ class _PenjemputanPage extends State<PenjemputanPage> {
       ),
       drawer: const MyDrawer(),
       body: FutureBuilder(
-        future: fetchPenjemputanItem(),
+        future: fetchPenjemputanItem(context),
         builder: (context, AsyncSnapshot snapshot) {
           if (snapshot.data == null) {
             return const Center(child: CircularProgressIndicator());

@@ -1,6 +1,7 @@
 name: about_us
 description: A new Flutter package project.
 version: 0.0.1
+publish_to: "none"
 homepage:
 
 environment:
@@ -13,6 +14,8 @@ dependencies:
   e_waste_bank_mobile:
     path: ../.
   http: ^0.13.5
+  pbp_django_auth: ^0.2.3
+  provider: ^6.0.4
 
 dev_dependencies:
   flutter_test:
