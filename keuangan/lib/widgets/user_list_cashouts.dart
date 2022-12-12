@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:keuangan/models/user_keuanganadmin.dart';
 import 'package:keuangan/providers/user_keuanganadmin_provider.dart';
 import 'package:provider/provider.dart';
@@ -44,9 +45,10 @@ class _UserListCashoutsPageState extends State<UserListCashoutsPage> {
 
   @override
   Widget build(BuildContext context) {
+    var numberFormatter = NumberFormat.decimalPattern("id");
     return Scaffold(
       appBar: AppBar(
-        title: const Text('My Cashouts'),
+        title: const Text('Daftar Penarikan Uang'),
       ),
       drawer: const MyDrawer(),
       body: FutureBuilder(
@@ -84,8 +86,11 @@ class _UserListCashoutsPageState extends State<UserListCashoutsPage> {
                     decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(15.0),
-                        boxShadow: const [
-                          BoxShadow(color: Colors.grey, blurRadius: 5)
+                        boxShadow: [
+                          BoxShadow(color: snapshot.data![index].fields.approved 
+                                          ? Colors.green 
+                                          : Colors.red, 
+                                    blurRadius: 5)
                         ]),
                     child: Column(
                       // mainAxisAlignment: MainAxisAlignment.start,
@@ -95,7 +100,7 @@ class _UserListCashoutsPageState extends State<UserListCashoutsPage> {
                           children: <Widget>[
                             Expanded(
                               child: Text(
-                                "Penarikan ID: ${snapshot.data![index].pk}",
+                                "Rp. ${numberFormatter.format(snapshot.data![index].fields.amount)}",
                                 style: const TextStyle(
                                   fontSize: 18,
                                   fontWeight: FontWeight.bold,
@@ -108,7 +113,7 @@ class _UserListCashoutsPageState extends State<UserListCashoutsPage> {
                           children: <Widget>[
                             Expanded(
                               child: Text(
-                                "Nominal: Rp.${snapshot.data![index].fields.amount}",
+                                "ID Penarikan: ${snapshot.data![index].pk}",
                                 style: const TextStyle(
                                   fontSize: 14,
                                 ),
