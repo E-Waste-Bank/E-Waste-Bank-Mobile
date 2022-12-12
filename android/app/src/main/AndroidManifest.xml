@@ -14,7 +14,7 @@
     </queries>
 
     <application
-        android:label="e_waste_bank_mobile"
+        android:label="E-Waste Bank"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

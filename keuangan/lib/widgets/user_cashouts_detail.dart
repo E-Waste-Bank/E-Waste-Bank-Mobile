@@ -83,7 +83,7 @@ class CashoutDetailPage extends StatelessWidget {
                       backgroundColor: MaterialStateProperty.all(Colors.blue),
                     ),
                     child: const Text(
-                      'Back',
+                      'Kembali',
                       style: TextStyle(color: Colors.white),
                     ),
                   ),

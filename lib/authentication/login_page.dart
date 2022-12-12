@@ -121,14 +121,12 @@ class _LoginPageState extends State<LoginPage> {
                 TextButton(
                   onPressed: () async {
                     if (_loginPageFormKey.currentState!.validate()) {
-                      // TODO CircularProgessIndicator
                       final response = await requester.login(
                           "https://e-waste-bank.up.railway.app/auth/login/", {
                         'username': username,
                         'password': password,
                       });
 
-                      // TODO text formatting di dialog berhasil dan gagal
                       if (requester.loggedIn) {
                         userProvider.login(username, response['role']);
                         userKeuanganAdminProvider.login(
@@ -154,6 +152,7 @@ class _LoginPageState extends State<LoginPage> {
                                     const Center(
                                       child: Text(
                                         "Login berhasil!",
+                                        textAlign: TextAlign.center,
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold),
                                       ),
@@ -195,6 +194,7 @@ class _LoginPageState extends State<LoginPage> {
                                     Center(
                                       child: Text(
                                         "Login gagal! ${response['message']}",
+                                        textAlign: TextAlign.center,
                                         style: const TextStyle(
                                             fontWeight: FontWeight.bold),
                                       ),
