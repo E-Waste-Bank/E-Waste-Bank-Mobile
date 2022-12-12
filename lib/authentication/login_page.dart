@@ -65,6 +65,13 @@ class _LoginPageState extends State<LoginPage> {
                         username = value!;
                       });
                     },
+                    validator: (String? value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Username harus diisi!';
+                      }
+
+                      return null;
+                    },
                   ),
                 ),
                 Padding(
@@ -97,6 +104,13 @@ class _LoginPageState extends State<LoginPage> {
                       setState(() {
                         password = value!;
                       });
+                    },
+                    validator: (String? value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Password harus diisi!';
+                      }
+
+                      return null;
                     },
                   ),
                 ),
