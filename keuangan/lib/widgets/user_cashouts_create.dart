@@ -4,7 +4,6 @@ import 'package:keuangan/providers/user_keuanganadmin_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 
-
 class UserCreateCashoutsPage extends StatefulWidget {
   const UserCreateCashoutsPage({Key? key}) : super(key: key);
 
@@ -19,7 +18,8 @@ class _UserCreateCashoutsPageState extends State<UserCreateCashoutsPage> {
 
   @override
   Widget build(BuildContext context) {
-    CookieRequest requester = Provider.of<CookieRequest>(context, listen: false);
+    CookieRequest requester =
+        Provider.of<CookieRequest>(context, listen: false);
 
     return Scaffold(
       appBar: AppBar(
@@ -86,8 +86,6 @@ class _UserCreateCashoutsPageState extends State<UserCreateCashoutsPage> {
                         return 'Nominal tidak boleh kosong!';
                       } else if (double.tryParse(value) == null) {
                         return 'Nominal tidak valid!';
-                      } else if (((double.parse(value) / 0.01) % 1) != 0) { // TODO handler floating point menyebalkan
-                        return 'Nominal hanya boleh mengandung dua angka di belakang koma!';
                       }
                       return null;
                     },
@@ -136,9 +134,7 @@ class _UserCreateCashoutsPageState extends State<UserCreateCashoutsPage> {
                                   ],
                                 ),
                               );
-                            }
-                          )
-                        );
+                            }));
                       } else {
                         showDialog(
                             context: context,
@@ -174,9 +170,7 @@ class _UserCreateCashoutsPageState extends State<UserCreateCashoutsPage> {
                                   ],
                                 ),
                               );
-                            }
-                          )
-                        );
+                            }));
                       }
                     }
                   },
