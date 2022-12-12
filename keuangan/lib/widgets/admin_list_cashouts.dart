@@ -124,7 +124,6 @@ class _AdminListCashoutsPageState extends State<AdminListCashoutsPage> {
                                                       ),
                                                       TextButton(
                                                         onPressed: () async{
-                                                          // TODO submit
                                                             final response =
                                                             await requester
                                                                 .post(
@@ -135,24 +134,15 @@ class _AdminListCashoutsPageState extends State<AdminListCashoutsPage> {
                                                                   'approved': checkboxValue
                                                                       .toString()
                                                                 });
-                                                            //
-                                                            // if (response['status']) {
-                                                            //   // ignore: use_build_context_synchronously
-                                                            //   Navigator.pushReplacement(
-                                                            //       context,
-                                                            //       MaterialPageRoute(
-                                                            //         builder: (context) => const AdminListCashoutsPage(),
-                                                            //       ));
-                                                            // }
                                                             // ignore: use_build_context_synchronously
-                                                            // Navigator.pop(
-                                                            //     context);
-                                                            // ignore: use_build_context_synchronously
-                                                            Navigator.pushReplacement(
+                                                            Navigator.push(
                                                                 context,
                                                                 MaterialPageRoute(
                                                                   builder: (context) => const AdminListCashoutsPage(),
-                                                                ));
+                                                                )).then((value){
+                                                                  setState(() {
+                                                                  });
+                                                            });
                                                         },
                                                         child: const Text('Send'),
                                                       ),
@@ -177,7 +167,7 @@ class _AdminListCashoutsPageState extends State<AdminListCashoutsPage> {
       floatingActionButton: FloatingActionButton.extended(
         label: const Text('Keuangan'),
         onPressed: () {
-          Navigator.pushReplacement(
+          Navigator.push(
               context,
               MaterialPageRoute(
                 builder: (context) => const AdminListKeuanganPage(),

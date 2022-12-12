@@ -186,11 +186,14 @@ class _AdminListKeuanganPageState extends State<AdminListKeuanganPage> {
                                                                     .toString()
                                                               });
                                                           // ignore: use_build_context_synchronously
-                                                          Navigator.pushReplacement(
+                                                          Navigator.push(
                                                               context,
                                                               MaterialPageRoute(
                                                                 builder: (context) => const AdminListKeuanganPage(),
-                                                          ));
+                                                          )).then((value){
+                                                            setState(() {
+                                                            });
+                                                          });
                                                         },
                                                         child:
                                                             const Text('Send'),
@@ -212,7 +215,7 @@ class _AdminListKeuanganPageState extends State<AdminListKeuanganPage> {
       floatingActionButton: FloatingActionButton.extended(
         label: const Text('Cashouts'),
         onPressed: () {
-          Navigator.pushReplacement(
+          Navigator.push(
               context,
               MaterialPageRoute(
                 builder: (context) => const AdminListCashoutsPage(),
