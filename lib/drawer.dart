@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:penjemputan/page/list_penjemputan.dart';
 import 'package:provider/provider.dart';
 import 'package:e_waste_bank_mobile/authentication/user_provider.dart';
 import 'package:e_waste_bank_mobile/main.dart';
@@ -7,6 +8,7 @@ import 'package:e_waste_bank_mobile/authentication/login_page.dart';
 import 'package:e_waste_bank_mobile/authentication/register.page.dart';
 import 'package:tips_and_tricks/page/list_tips_and_trick.dart';
 import 'package:tips_and_tricks/page/add_tips_and_trick.dart';
+import 'package:about_us/about_us.dart';
 // import 'package:penjemputan/page/list_penjemputan.dart';
 
 class MyDrawer extends StatefulWidget {
@@ -32,6 +34,12 @@ class _MyDrawerState extends State<MyDrawer> {
                 MaterialPageRoute(builder: (context) => const MyHomePage()));
           }),
       ListTile(
+          title: const Text('About Us'),
+          onTap: () {
+            Navigator.pushReplacement(context,
+                MaterialPageRoute(builder: (context) => const AboutUsPage()));
+          }),
+      ListTile(
           title: const Text('Tips And Tricks'),
           onTap: () {
             Navigator.pushReplacement(
@@ -39,6 +47,15 @@ class _MyDrawerState extends State<MyDrawer> {
                 MaterialPageRoute(
                     builder: (context) => const TipsAndTrickPage()));
           }),
+      Visibility(
+        visible: userProvider.isAuthenticated(),
+        child: ListTile(
+            title: const Text('penjemputan'),
+            onTap: () {
+              Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: (context) => const PenjemputanPage()));
+            }),
+      ),
       Visibility(
         visible: userProvider.isAdmin(),
         child: ListTile(
@@ -79,7 +96,7 @@ class _MyDrawerState extends State<MyDrawer> {
                   .logout("https://e-waste-bank.up.railway.app/auth/logout/");
 
               // ignore: use_build_context_synchronously
-              context.watch<UserProvider>().logout();
+              Provider.of<UserProvider>(context, listen: false).logout();
 
               // ignore: use_build_context_synchronously
               Navigator.pushReplacement(context,
