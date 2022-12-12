@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:e_waste_bank_mobile/drawer.dart';
+import 'package:provider/provider.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:keuangan/methods/get_admin_cashout.dart';
 import 'package:keuangan/models/admin_cashout_model.dart';
 
@@ -23,10 +25,10 @@ class _AdminListCashoutsPageState extends State<AdminListCashoutsPage> {
     fetchedCashouts = fetchAdminCashout(context);
   }
 
-
-
   @override
   Widget build(BuildContext context) {
+    CookieRequest requester = context.watch<CookieRequest>();
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('User Cashouts'),
@@ -34,7 +36,7 @@ class _AdminListCashoutsPageState extends State<AdminListCashoutsPage> {
       drawer: const MyDrawer(),
       body: FutureBuilder(
           future: fetchedCashouts,
-          builder: (context, AsyncSnapshot snapshot) {
+          builder: (context, AsyncSnapshot<dynamic> snapshot) {
             if (snapshot.data == null) {
               return const Center(child: CircularProgressIndicator());
             } else {
@@ -90,10 +92,6 @@ class _AdminListCashoutsPageState extends State<AdminListCashoutsPage> {
                                   showDialog(
                                     context: context,
                                     builder: (_) {
-                                      var emailController =
-                                          TextEditingController();
-                                      var messageController =
-                                          TextEditingController();
                                       return AlertDialog(
                                         title: const Text('Cashout Approval'),
                                         content: SingleChildScrollView(
@@ -125,9 +123,36 @@ class _AdminListCashoutsPageState extends State<AdminListCashoutsPage> {
                                                         child: const Text('Cancel'),
                                                       ),
                                                       TextButton(
-                                                        onPressed: () {
+                                                        onPressed: () async{
                                                           // TODO submit
-                                                          Navigator.pop(context);
+                                                            final response =
+                                                            await requester
+                                                                .post(
+                                                                "https://e-waste-bank.up.railway.app/keuangan/edit-cashout-api/${snapshot
+                                                                    .data![index]
+                                                                    .pk}/",
+                                                                {
+                                                                  'approved': checkboxValue
+                                                                      .toString()
+                                                                });
+                                                            //
+                                                            // if (response['status']) {
+                                                            //   // ignore: use_build_context_synchronously
+                                                            //   Navigator.pushReplacement(
+                                                            //       context,
+                                                            //       MaterialPageRoute(
+                                                            //         builder: (context) => const AdminListCashoutsPage(),
+                                                            //       ));
+                                                            // }
+                                                            // ignore: use_build_context_synchronously
+                                                            // Navigator.pop(
+                                                            //     context);
+                                                            // ignore: use_build_context_synchronously
+                                                            Navigator.pushReplacement(
+                                                                context,
+                                                                MaterialPageRoute(
+                                                                  builder: (context) => const AdminListCashoutsPage(),
+                                                                ));
                                                         },
                                                         child: const Text('Send'),
                                                       ),

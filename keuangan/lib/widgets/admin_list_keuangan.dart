@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:keuangan/methods/get_admin_keuangan.dart';
 import 'package:keuangan/models/admin_keuanganadmin_model.dart';
 import 'package:e_waste_bank_mobile/drawer.dart';
@@ -16,7 +18,7 @@ class AdminListKeuanganPage extends StatefulWidget {
 class _AdminListKeuanganPageState extends State<AdminListKeuanganPage> {
   late Future<List<KeuanganAdmin>> fetchedKeuangan;
   final _formKey = GlobalKey<FormState>();
-  int? amount;
+  double? amount;
 
   @override
   void initState() {
@@ -26,6 +28,8 @@ class _AdminListKeuanganPageState extends State<AdminListKeuanganPage> {
 
   @override
   Widget build(BuildContext context) {
+    CookieRequest requester = context.watch<CookieRequest>();
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Data Keuangan User'),
@@ -83,10 +87,6 @@ class _AdminListKeuanganPageState extends State<AdminListKeuanganPage> {
                                   showDialog(
                                     context: context,
                                     builder: (_) {
-                                      var emailController =
-                                          TextEditingController();
-                                      var messageController =
-                                          TextEditingController();
                                       return AlertDialog(
                                         title: const Text('Add Amount'),
                                         content: SingleChildScrollView(
@@ -105,14 +105,14 @@ class _AdminListKeuanganPageState extends State<AdminListKeuanganPage> {
                                                         inputFormatters: <
                                                             TextInputFormatter>[
                                                           FilteringTextInputFormatter
-                                                              .digitsOnly
+                                                              .allow(RegExp(
+                                                                  r'^\d+\.?\d{0,2}'))
                                                         ],
                                                         decoration:
                                                             InputDecoration(
                                                           hintText:
                                                               "Contoh: 1000",
                                                           labelText: "Nominal",
-
                                                           // Menambahkan circular border agar lebih rapi
                                                           border:
                                                               OutlineInputBorder(
@@ -126,16 +126,18 @@ class _AdminListKeuanganPageState extends State<AdminListKeuanganPage> {
                                                         onChanged:
                                                             (String? value) {
                                                           setState(() {
-                                                            amount = int.parse(
-                                                                value!);
+                                                            amount =
+                                                                double.parse(
+                                                                    value!);
                                                           });
                                                         },
                                                         // Menambahkan behavior saat data disimpan
                                                         onSaved:
                                                             (String? value) {
                                                           setState(() {
-                                                            amount = int.parse(
-                                                                value!);
+                                                            amount =
+                                                                double.parse(
+                                                                    value!);
                                                           });
                                                         },
                                                         // Validator sebagai validasi form
@@ -148,6 +150,12 @@ class _AdminListKeuanganPageState extends State<AdminListKeuanganPage> {
                                                                   value) <
                                                               0) {
                                                             return 'Nominal tidak boleh negatif!';
+                                                          } else if (((double.parse(
+                                                                          value) /
+                                                                      0.01) %
+                                                                  1) !=
+                                                              0) {
+                                                            return 'Nominal hanya boleh mengandung dua angka di belakang koma!';
                                                           }
                                                           return null;
                                                         },
@@ -168,10 +176,21 @@ class _AdminListKeuanganPageState extends State<AdminListKeuanganPage> {
                                                             'Cancel'),
                                                       ),
                                                       TextButton(
-                                                        onPressed: () {
+                                                        onPressed: () async {
                                                           // TODO submit
-                                                          Navigator.pop(
-                                                              context);
+                                                          final response =
+                                                              await requester.post(
+                                                                  "https://e-waste-bank.up.railway.app/keuangan/edit-uang-user-api/${snapshot.data![index].pk}/",
+                                                                  {
+                                                                'uang_user': amount
+                                                                    .toString()
+                                                              });
+                                                          // ignore: use_build_context_synchronously
+                                                          Navigator.pushReplacement(
+                                                              context,
+                                                              MaterialPageRoute(
+                                                                builder: (context) => const AdminListKeuanganPage(),
+                                                          ));
                                                         },
                                                         child:
                                                             const Text('Send'),
