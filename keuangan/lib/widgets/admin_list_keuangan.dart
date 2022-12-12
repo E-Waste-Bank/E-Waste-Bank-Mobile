@@ -177,7 +177,6 @@ class _AdminListKeuanganPageState extends State<AdminListKeuanganPage> {
                                                       ),
                                                       TextButton(
                                                         onPressed: () async {
-                                                          // TODO submit
                                                           final response =
                                                               await requester.post(
                                                                   "https://e-waste-bank.up.railway.app/keuangan/edit-uang-user-api/${snapshot.data![index].pk}/",
@@ -189,10 +188,11 @@ class _AdminListKeuanganPageState extends State<AdminListKeuanganPage> {
                                                           Navigator.push(
                                                               context,
                                                               MaterialPageRoute(
-                                                                builder: (context) => const AdminListKeuanganPage(),
-                                                          )).then((value){
-                                                            setState(() {
-                                                            });
+                                                                builder:
+                                                                    (context) =>
+                                                                        const AdminListKeuanganPage(),
+                                                              )).then((value) {
+                                                            setState(() {});
                                                           });
                                                         },
                                                         child:
