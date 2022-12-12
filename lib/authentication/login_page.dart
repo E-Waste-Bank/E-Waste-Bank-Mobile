@@ -1,13 +1,11 @@
 import 'package:about_us/about_us.dart';
 import 'package:e_waste_bank_mobile/authentication/user_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:keuangan/models/admin_cashout_model.dart';
 import 'package:keuangan/providers/user_keuanganadmin_provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 
 import 'package:e_waste_bank_mobile/drawer.dart';
-import 'package:e_waste_bank_mobile/main.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);

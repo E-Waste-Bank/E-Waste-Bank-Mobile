@@ -1,4 +1,3 @@
-import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
@@ -24,7 +23,7 @@ class _AddFeedbackPageState extends State<AddFeedbackPage> {
     final request = context.watch<CookieRequest>();
     return Scaffold(
       appBar: AppBar(
-        title: Text('Add Your Feedback'),
+        title: const Text('Add Your Feedback'),
       ),
       // Menambahkan drawer menu
       drawer: const MyDrawer(),
@@ -103,12 +102,14 @@ class _AddFeedbackPageState extends State<AddFeedbackPage> {
                   ),
                   onPressed: () async {
                     if (_formKey.currentState!.validate()) {
+                      // ignore: unused_local_variable
                       final response = await request.post(
                         'https://e-waste-bank.up.railway.app/about-us/add-feedback-flutter/', {
                         'name': _nama,
                         'your_feedback':_feedback
                         }
                       );
+                      // ignore: use_build_context_synchronously
                       Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(builder: (context) => const ListFeedbackPage()),

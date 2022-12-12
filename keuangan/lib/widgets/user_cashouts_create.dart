@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:keuangan/providers/user_keuanganadmin_provider.dart';
-import 'package:keuangan/widgets/user_list_cashouts.dart';
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 
-import 'package:e_waste_bank_mobile/drawer.dart';
 
 class UserCreateCashoutsPage extends StatefulWidget {
   const UserCreateCashoutsPage({Key? key}) : super(key: key);

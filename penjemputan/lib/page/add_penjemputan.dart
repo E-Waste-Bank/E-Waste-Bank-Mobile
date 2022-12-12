@@ -180,6 +180,7 @@ class _AddPenjemputan extends State<AddPenjemputan> {
                               },
                             );
                             if (response['status']) {
+                              // ignore: use_build_context_synchronously
                               ScaffoldMessenger.of(context)
                                   .showSnackBar(SnackBar(
                                 backgroundColor: Colors.green,
@@ -208,6 +209,7 @@ class _AddPenjemputan extends State<AddPenjemputan> {
                                 waktuJemput = null;
                               });
                             } else {
+                              // ignore: use_build_context_synchronously
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
                                   backgroundColor: Colors.red,
