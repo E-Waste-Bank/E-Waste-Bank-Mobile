@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:keuangan/models/user_keuanganadmin.dart';
 import 'package:keuangan/providers/user_keuanganadmin_provider.dart';
 import 'package:provider/provider.dart';
@@ -44,6 +45,7 @@ class _UserListCashoutsPageState extends State<UserListCashoutsPage> {
 
   @override
   Widget build(BuildContext context) {
+    var numberFormatter = NumberFormat.decimalPattern("id");
     return Scaffold(
       appBar: AppBar(
         title: const Text('Daftar Penarikan Uang'),
@@ -98,7 +100,7 @@ class _UserListCashoutsPageState extends State<UserListCashoutsPage> {
                           children: <Widget>[
                             Expanded(
                               child: Text(
-                                "Rp. ${snapshot.data![index].fields.amount.toStringAsFixed(2)}",
+                                "Rp. ${numberFormatter.format(snapshot.data![index].fields.amount)}",
                                 style: const TextStyle(
                                   fontSize: 18,
                                   fontWeight: FontWeight.bold,
