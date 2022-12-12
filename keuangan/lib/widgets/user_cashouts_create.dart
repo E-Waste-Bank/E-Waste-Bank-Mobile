@@ -21,7 +21,7 @@ class _UserCreateCashoutsPageState extends State<UserCreateCashoutsPage> {
 
   @override
   Widget build(BuildContext context) {
-    CookieRequest requester = context.watch<CookieRequest>();
+    CookieRequest requester = Provider.of<CookieRequest>(context, listen: false);
 
     return Scaffold(
       appBar: AppBar(
