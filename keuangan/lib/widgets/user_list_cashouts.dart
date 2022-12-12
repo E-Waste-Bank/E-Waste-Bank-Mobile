@@ -124,9 +124,14 @@ class _UserListCashoutsPageState extends State<UserListCashoutsPage> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: ((context) => const UserCreateCashoutsPage())));
+                  context,
+                  MaterialPageRoute(
+                      builder: ((context) => const UserCreateCashoutsPage())))
+              .then((_) {
+            setState(() {
+              fetchedCashouts = fetchCashouts();
+            });
+          });
         },
         tooltip: "Buat Penarikan Baru",
         child: const Icon(Icons.add),
