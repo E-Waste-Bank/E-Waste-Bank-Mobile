@@ -10,6 +10,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  e_waste_bank_mobile:
+    path: ../.
+  http: ^0.13.5
 
 dev_dependencies:
   flutter_test:

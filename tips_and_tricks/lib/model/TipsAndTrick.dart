@@ -5,7 +5,7 @@ List<TipsAndTrick> tipsAndTrickFromJson(String str) => List<TipsAndTrick>.from(j
 String tipsAndTrickToJson(List<TipsAndTrick> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class TipsAndTrick{
-  String user;
+  String user = "";
   String title = "";
   String source = "";
   String published_date = "";
