@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:keuangan/providers/user_keuanganadmin_provider.dart';
 import 'package:keuangan/widgets/user_list_cashouts.dart';
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
@@ -35,18 +36,22 @@ class _UserCreateCashoutsPageState extends State<UserCreateCashoutsPage> {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: TextFormField(
-                    enabled: false,
-                    initialValue: "10000", // TODO balance from provider
-                    decoration: InputDecoration(
-                      labelText: "Uang Tersedia",
-                      icon: const Icon(Icons.monetization_on),
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(5.0)),
-                    ),
-                  ),
+                Consumer<UserKeuanganAdminProvider>(
+                  builder: (context, value, child) {
+                    return Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: TextFormField(
+                        enabled: false,
+                        initialValue: value.getBalance().toString(),
+                        decoration: InputDecoration(
+                          labelText: "Uang Tersedia",
+                          icon: const Icon(Icons.monetization_on),
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(5.0)),
+                        ),
+                      ),
+                    );
+                  },
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
