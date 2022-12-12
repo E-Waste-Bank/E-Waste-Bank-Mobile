@@ -49,7 +49,7 @@ class CashoutDetailPage extends StatelessWidget {
                           TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
                   Expanded(
                     child: Text(
-                      "${cashouts.fields.amount}",
+                      "Rp. ${cashouts.fields.amount.toStringAsFixed(2)}",
                       style: const TextStyle(fontSize: 22),
                     ),
                   )
@@ -65,7 +65,7 @@ class CashoutDetailPage extends StatelessWidget {
                           TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
                   Expanded(
                     child: Text(
-                      cashouts.fields.approved ? "Ya" : "Tidak",
+                      cashouts.fields.approved ? "Sudah" : "Belum",
                       style: const TextStyle(fontSize: 22),
                     ),
                   )
