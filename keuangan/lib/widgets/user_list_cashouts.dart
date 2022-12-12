@@ -46,7 +46,7 @@ class _UserListCashoutsPageState extends State<UserListCashoutsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('My Cashouts'),
+        title: const Text('Daftar Penarikan Uang'),
       ),
       drawer: const MyDrawer(),
       body: FutureBuilder(

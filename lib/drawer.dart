@@ -70,7 +70,7 @@ class _MyDrawerState extends State<MyDrawer> {
       Visibility(
         visible: userProvider.isAuthenticated() && !userProvider.isAdmin(),
         child: ListTile(
-            title: const Text('Lihat Cashouts'),
+            title: const Text('Keuangan'),
             onTap: () {
               Navigator.pushReplacement(
                   context,
