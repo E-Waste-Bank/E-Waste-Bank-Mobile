@@ -144,6 +144,10 @@ class _AdminListKeuanganPageState extends State<AdminListKeuanganPage> {
                                                           if (value == null ||
                                                               value.isEmpty) {
                                                             return 'Nominal tidak boleh kosong!';
+                                                          } else if (int.parse(
+                                                                  value) <
+                                                              0) {
+                                                            return 'Nominal tidak boleh negatif!';
                                                           }
                                                           return null;
                                                         },
