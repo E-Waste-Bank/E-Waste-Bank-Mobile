@@ -88,7 +88,7 @@ class _UserCreateCashoutsPageState extends State<UserCreateCashoutsPage> {
                         return 'Nominal tidak boleh kosong!';
                       } else if (double.tryParse(value) == null) {
                         return 'Nominal tidak valid!';
-                      } else if (((double.parse(value) / 0.01) % 1) != 0) {
+                      } else if (((double.parse(value) / 0.01) % 1) != 0) { // TODO handler floating point menyebalkan
                         return 'Nominal hanya boleh mengandung dua angka di belakang koma!';
                       }
                       return null;

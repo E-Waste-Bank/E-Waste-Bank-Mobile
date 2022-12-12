@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:keuangan/providers/user_keuanganadmin_provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:penjemputan/page/list_penjemputan.dart';
@@ -28,9 +29,13 @@ class _MyDrawerState extends State<MyDrawer> {
     final requester = context.watch<CookieRequest>();
 
     UserProvider userProvider = context.watch<UserProvider>();
+    UserKeuanganAdminProvider userKeuanganAdminProvider = Provider.of<UserKeuanganAdminProvider>(context, listen: false);
+
+    var numberFormatter = NumberFormat.decimalPattern("id");
 
     return Drawer(
         child: Column(children: [
+        userProvider.isAuthenticated() && !userProvider.isAdmin() ? UserAccountsDrawerHeader(accountName: Text(userProvider.getUsername()), accountEmail: Text("Rp. ${numberFormatter.format(userKeuanganAdminProvider.getBalance())}")) : const SizedBox.shrink(),
       ListTile(
           title: const Text('About Us'),
           onTap: () {
@@ -118,6 +123,7 @@ class _MyDrawerState extends State<MyDrawer> {
               // ignore: use_build_context_synchronously
               Provider.of<UserProvider>(context, listen: false).logout();
 
+              // ignore: use_build_context_synchronously
               Provider.of<UserKeuanganAdminProvider>(context, listen: false)
                   .logout();
 

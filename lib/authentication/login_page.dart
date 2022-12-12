@@ -31,8 +31,10 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    CookieRequest requester = Provider.of<CookieRequest>(context, listen: false);
-    UserProvider userProvider = Provider.of<UserProvider>(context, listen: false);
+    CookieRequest requester =
+        Provider.of<CookieRequest>(context, listen: false);
+    UserProvider userProvider =
+        Provider.of<UserProvider>(context, listen: false);
     UserKeuanganAdminProvider userKeuanganAdminProvider =
         Provider.of<UserKeuanganAdminProvider>(context, listen: false);
 
@@ -133,6 +135,8 @@ class _LoginPageState extends State<LoginPage> {
                         userProvider.login(username, response['role']);
                         userKeuanganAdminProvider.login(
                             username, response['role']);
+                        // ignore: use_build_context_synchronously
+                        userKeuanganAdminProvider.fetchBalance(context);
                         showDialog(
                             context: context,
                             builder: ((context) {
