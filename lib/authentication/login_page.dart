@@ -136,7 +136,10 @@ class _LoginPageState extends State<LoginPage> {
                         userKeuanganAdminProvider.login(
                             username, response['role']);
                         // ignore: use_build_context_synchronously
-                        userKeuanganAdminProvider.fetchBalance(context);
+                        if (response['role'] == "user") {
+                          // ignore: use_build_context_synchronously
+                          userKeuanganAdminProvider.fetchBalance(context);
+                        }
                         showDialog(
                             context: context,
                             builder: ((context) {

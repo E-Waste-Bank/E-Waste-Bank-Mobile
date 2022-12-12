@@ -29,13 +29,21 @@ class _MyDrawerState extends State<MyDrawer> {
     final requester = context.watch<CookieRequest>();
 
     UserProvider userProvider = context.watch<UserProvider>();
-    UserKeuanganAdminProvider userKeuanganAdminProvider = Provider.of<UserKeuanganAdminProvider>(context, listen: false);
+    UserKeuanganAdminProvider userKeuanganAdminProvider =
+        Provider.of<UserKeuanganAdminProvider>(context, listen: false);
 
     var numberFormatter = NumberFormat.decimalPattern("id");
 
     return Drawer(
         child: Column(children: [
-        userProvider.isAuthenticated() && !userProvider.isAdmin() ? UserAccountsDrawerHeader(accountName: Text(userProvider.getUsername()), accountEmail: Text("Rp. ${numberFormatter.format(userKeuanganAdminProvider.getBalance())}")) : const SizedBox.shrink(),
+      userProvider.isAuthenticated()
+          ? UserAccountsDrawerHeader(
+              accountName: Text(userProvider.getUsername()),
+              accountEmail: userProvider.isAdmin()
+                  ? const Text("Anda login sebagai admin.")
+                  : Text(
+                      "Rp. ${numberFormatter.format(userKeuanganAdminProvider.getBalance())}"))
+          : const SizedBox.shrink(),
       ListTile(
           title: const Text('About Us'),
           onTap: () {
@@ -99,8 +107,10 @@ class _MyDrawerState extends State<MyDrawer> {
         child: ListTile(
             title: const Text('Keuangan'),
             onTap: () {
-              Navigator.pushReplacement(context,
-                  MaterialPageRoute(builder: (context) => const AdminListKeuanganPage()));
+              Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const AdminListKeuanganPage()));
             }),
       ),
       Visibility(
