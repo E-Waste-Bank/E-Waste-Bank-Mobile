@@ -185,6 +185,36 @@ class _AdminListKeuanganPageState extends State<AdminListKeuanganPage> {
                                                                 'uang_user': amount
                                                                     .toString()
                                                               });
+                                                          if (response[
+                                                              'status']) {
+                                                            // ignore: use_build_context_synchronously
+                                                            ScaffoldMessenger
+                                                                    .of(context)
+                                                                .showSnackBar(
+                                                                    SnackBar(
+                                                              backgroundColor:
+                                                                  Colors.blue,
+                                                              // ignore: prefer_const_constructors
+                                                              content: Text(
+                                                                "Uang user berhasil ditambahkan",
+                                                                style: const TextStyle(
+                                                                    color: Colors
+                                                                        .white),
+                                                              ),
+                                                              action:
+                                                                  SnackBarAction(
+                                                                label: 'Close',
+                                                                textColor:
+                                                                    Colors
+                                                                        .white,
+                                                                onPressed: () {
+                                                                  ScaffoldMessenger.of(
+                                                                          context)
+                                                                      .hideCurrentSnackBar();
+                                                                },
+                                                              ),
+                                                            ));
+                                                          }
                                                           // ignore: use_build_context_synchronously
                                                           Navigator.push(
                                                               context,
