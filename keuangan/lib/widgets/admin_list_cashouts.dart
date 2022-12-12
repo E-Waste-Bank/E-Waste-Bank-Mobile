@@ -14,6 +14,8 @@ class AdminListCashoutsPage extends StatefulWidget {
 
 class _AdminListCashoutsPageState extends State<AdminListCashoutsPage> {
   late Future<List<Cashout>> fetchedCashouts;
+  final _formKey = GlobalKey<FormState>();
+  bool checkboxValue = false;
 
   @override
   void initState() {
@@ -57,7 +59,7 @@ class _AdminListCashoutsPageState extends State<AdminListCashoutsPage> {
                               boxShadow: [
                                 BoxShadow(
                                     color: snapshot.data![index].fields.approved
-                                        ? Colors.green
+                                        ? Colors.blue
                                         : Colors.red,
                                     blurRadius: 5.0)
                               ]),
@@ -80,7 +82,66 @@ class _AdminListCashoutsPageState extends State<AdminListCashoutsPage> {
                                   ),
                                 ),
                                 // trailing: ,
-                                onTap: () {},
+                                onTap: () {
+                                  showDialog(
+                                    context: context,
+                                    builder: (_) {
+                                      var emailController =
+                                          TextEditingController();
+                                      var messageController =
+                                          TextEditingController();
+                                      return AlertDialog(
+                                        title: const Text('Cashout Approval'),
+                                        content: SingleChildScrollView(
+                                            child: Form(
+                                                key: _formKey,
+                                                child: Column(children: [
+                                                  CheckboxListTile(
+                                                    title: const Text(
+                                                        'Setujui request?'),
+                                                    enabled: true,
+                                                    value: checkboxValue =
+                                                        snapshot.data![index]
+                                                            .fields.approved,
+                                                    onChanged: (val) {
+                                                      if (checkboxValue ==
+                                                          false) {
+                                                        setState(() {
+                                                          checkboxValue = true;
+                                                        });
+                                                      } else if (checkboxValue ==
+                                                          true) {
+                                                        setState(() {
+                                                          checkboxValue = false;
+                                                        });
+                                                      }
+                                                    },
+                                                    activeColor: Colors.blue,
+                                                  ),
+                                                  Row(
+                                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                                    mainAxisAlignment: MainAxisAlignment.center,
+                                                    children: [
+                                                      TextButton(
+                                                        onPressed: () =>
+                                                            Navigator.pop(context),
+                                                        child: const Text('Cancel'),
+                                                      ),
+                                                      TextButton(
+                                                        onPressed: () {
+                                                          // TODO submit
+                                                          Navigator.pop(context);
+                                                        },
+                                                        child: const Text('Send'),
+                                                      ),
+                                                    ],
+                                                  ),
+
+                                                ]))),
+                                      );
+                                    },
+                                  );
+                                },
                               ),
                             ],
                           ),
