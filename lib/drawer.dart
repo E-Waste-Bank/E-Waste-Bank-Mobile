@@ -30,12 +30,6 @@ class _MyDrawerState extends State<MyDrawer> {
     return Drawer(
         child: Column(children: [
       ListTile(
-          title: const Text('Halaman Utama'),
-          onTap: () {
-            Navigator.pushReplacement(context,
-                MaterialPageRoute(builder: (context) => const MyHomePage()));
-          }),
-      ListTile(
           title: const Text('About Us'),
           onTap: () {
             Navigator.pushReplacement(context,
@@ -111,7 +105,7 @@ class _MyDrawerState extends State<MyDrawer> {
 
               // ignore: use_build_context_synchronously
               Navigator.pushReplacement(context,
-                  MaterialPageRoute(builder: (context) => const MyHomePage()));
+                  MaterialPageRoute(builder: (context) => const AboutUsPage()));
             }),
       ),
     ]));
