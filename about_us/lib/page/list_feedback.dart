@@ -5,12 +5,6 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:e_waste_bank_mobile/drawer.dart';
 
-class DataFeedback{
-  static List<String> listNama = [];
-  static List<DateTime> listTanggal = [];
-  static List<String> listFeedback = [];
-}
-
 class ListFeedbackPage extends StatefulWidget {
   const ListFeedbackPage({Key? key}) : super(key: key);
 
@@ -33,14 +27,14 @@ class _ListFeedbackPageState extends State<ListFeedbackPage> {
     var data = jsonDecode(utf8.decode(response.bodyBytes));
 
     // melakukan konversi data json menjadi object
-    List<Feedbacks> listMyWatchlist = [];
+    List<Feedbacks> listFeedback = [];
     for (var d in data) {
       if (d != null) {
-        listMyWatchlist.add(Feedbacks.fromJson(d));
+        listFeedback.add(Feedbacks.fromJson(d));
       }
     }
 
-    return listMyWatchlist;
+    return listFeedback;
   }
 
   Widget build(BuildContext context) {
@@ -90,7 +84,7 @@ class _ListFeedbackPageState extends State<ListFeedbackPage> {
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text("${snapshot.data![index].fields.name}"),
-                                  Text("${snapshot.data![index].fields.date}"),
+                                  Text("${snapshot.data![index].fields.date}".toString().substring(0,10)),
                                 ],
                               ),
                             ),
