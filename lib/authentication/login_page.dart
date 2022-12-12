@@ -154,6 +154,7 @@ class _LoginPageState extends State<LoginPage> {
                                     const Center(
                                       child: Text(
                                         "Login berhasil!",
+                                        textAlign: TextAlign.center,
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold),
                                       ),
@@ -195,6 +196,7 @@ class _LoginPageState extends State<LoginPage> {
                                     Center(
                                       child: Text(
                                         "Login gagal! ${response['message']}",
+                                        textAlign: TextAlign.center,
                                         style: const TextStyle(
                                             fontWeight: FontWeight.bold),
                                       ),

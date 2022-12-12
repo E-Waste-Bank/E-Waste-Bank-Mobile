@@ -60,6 +60,7 @@ class _UserListCashoutsPageState extends State<UserListCashoutsPage> {
               children: const [
                 Text(
                   "Belum ada penarikan yang anda buat.",
+                  textAlign: TextAlign.center,
                   style: TextStyle(color: Color(0xff59A5D8), fontSize: 20),
                 ),
                 SizedBox(height: 8),

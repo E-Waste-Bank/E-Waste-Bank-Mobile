@@ -115,6 +115,7 @@ class _UserCreateCashoutsPageState extends State<UserCreateCashoutsPage> {
                                     const Center(
                                       child: Text(
                                         "Request penarikan berhasil!",
+                                        textAlign: TextAlign.center,
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold),
                                       ),
@@ -152,6 +153,7 @@ class _UserCreateCashoutsPageState extends State<UserCreateCashoutsPage> {
                                     Center(
                                       child: Text(
                                         "Request penarikan gagal: ${response['message']}",
+                                        textAlign: TextAlign.center,
                                         style: const TextStyle(
                                             fontWeight: FontWeight.bold),
                                       ),
