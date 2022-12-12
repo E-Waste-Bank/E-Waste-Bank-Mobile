@@ -30,8 +30,8 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    CookieRequest requester = context.watch<CookieRequest>();
-    UserProvider userProvider = context.watch<UserProvider>();
+    CookieRequest requester = Provider.of<CookieRequest>(context, listen: false);
+    UserProvider userProvider = Provider.of<UserProvider>(context, listen: false);
     UserKeuanganAdminProvider userKeuanganAdminProvider =
         Provider.of<UserKeuanganAdminProvider>(context, listen: false);
 
