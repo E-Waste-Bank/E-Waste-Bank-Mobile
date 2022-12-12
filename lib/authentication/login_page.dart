@@ -80,7 +80,7 @@ class _LoginPageState extends State<LoginPage> {
                     decoration: InputDecoration(
                         hintText: "Password anda",
                         labelText: "Password",
-                        icon: const Icon(Icons.people),
+                        icon: const Icon(Icons.password),
                         suffixIcon: IconButton(
                           padding: const EdgeInsetsDirectional.only(end: 12.0),
                           icon: _isObscured
@@ -119,7 +119,6 @@ class _LoginPageState extends State<LoginPage> {
                     if (_loginPageFormKey.currentState!.validate()) {
                       final response = await requester
                           .login("https://e-waste-bank.up.railway.app/auth/login/", {
-                        // TODO ganti ke url local masing2 buat develop and debug
                         'username': username,
                         'password': password,
                       });
