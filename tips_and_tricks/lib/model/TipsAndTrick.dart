@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names, file_names
+
 import 'dart:convert';
 
 List<TipsAndTrick> tipsAndTrickFromJson(String str) => List<TipsAndTrick>.from(json.decode(str).map((x) => TipsAndTrick.fromJson(x)));

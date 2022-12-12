@@ -1,21 +1,14 @@
-import 'package:about_us/page/add_feedack.dart';
 import 'package:flutter/material.dart';
 import 'package:about_us/model/feedback.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:e_waste_bank_mobile/drawer.dart';
 
-class DataFeedback{
-  static List<String> listNama = [];
-  static List<DateTime> listTanggal = [];
-  static List<String> listFeedback = [];
-}
-
 class ListFeedbackPage extends StatefulWidget {
   const ListFeedbackPage({Key? key}) : super(key: key);
 
   @override
-  _ListFeedbackPageState createState() => _ListFeedbackPageState();
+  State<ListFeedbackPage> createState() => _ListFeedbackPageState();
 }
 
 class _ListFeedbackPageState extends State<ListFeedbackPage> {
@@ -33,16 +26,17 @@ class _ListFeedbackPageState extends State<ListFeedbackPage> {
     var data = jsonDecode(utf8.decode(response.bodyBytes));
 
     // melakukan konversi data json menjadi object
-    List<Feedbacks> listMyWatchlist = [];
+    List<Feedbacks> listFeedback = [];
     for (var d in data) {
       if (d != null) {
-        listMyWatchlist.add(Feedbacks.fromJson(d));
+        listFeedback.add(Feedbacks.fromJson(d));
       }
     }
 
-    return listMyWatchlist;
+    return listFeedback;
   }
 
+  @override
   Widget build(BuildContext context) {
 
     return Scaffold(
@@ -76,7 +70,7 @@ class _ListFeedbackPageState extends State<ListFeedbackPage> {
                       child: Card(
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
-                          side: BorderSide(color: Colors.blue)
+                          side: const BorderSide(color: Colors.blue)
                         ),
                         child: Container(
                           padding: const EdgeInsets.symmetric(horizontal: 3, vertical: 3),
@@ -85,12 +79,12 @@ class _ListFeedbackPageState extends State<ListFeedbackPage> {
                               "${snapshot.data![index].fields.yourFeedback}"
                             ),
                             subtitle: Padding(
-                              padding: EdgeInsets.all(5.0),
+                              padding: const EdgeInsets.all(5.0),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text("${snapshot.data![index].fields.name}"),
-                                  Text("${snapshot.data![index].fields.date}"),
+                                  Text("${snapshot.data![index].fields.date}".toString().substring(0,10)),
                                 ],
                               ),
                             ),

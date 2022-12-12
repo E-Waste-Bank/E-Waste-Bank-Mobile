@@ -1,48 +1,32 @@
-import 'package:about_us/about_us.dart';
-import 'package:e_waste_bank_mobile/authentication/user_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:keuangan/providers/user_keuanganadmin_provider.dart';
-import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
 
-import 'package:e_waste_bank_mobile/drawer.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+class UserCreateCashoutsPage extends StatefulWidget {
+  const UserCreateCashoutsPage({Key? key}) : super(key: key);
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<UserCreateCashoutsPage> createState() => _UserCreateCashoutsPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
-  final _loginPageFormKey = GlobalKey<FormState>();
+class _UserCreateCashoutsPageState extends State<UserCreateCashoutsPage> {
+  final _userCreateCashoutsPageKey = GlobalKey<FormState>();
 
-  String username = "";
-  String password = "";
-  var _isObscured = true;
-
-  @override
-  void initState() {
-    super.initState();
-    _isObscured = true;
-  }
+  double _nominalPenarikan = 0.0;
 
   @override
   Widget build(BuildContext context) {
-    CookieRequest requester =
-        Provider.of<CookieRequest>(context, listen: false);
-    UserProvider userProvider =
-        Provider.of<UserProvider>(context, listen: false);
-    UserKeuanganAdminProvider userKeuanganAdminProvider =
-        Provider.of<UserKeuanganAdminProvider>(context, listen: false);
+    CookieRequest requester = Provider.of<CookieRequest>(context, listen: false);
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Login"),
+        title: const Text('Buat Penarikan Baru'),
       ),
-      drawer: const MyDrawer(),
       body: Form(
-        key: _loginPageFormKey,
+        key: _userCreateCashoutsPageKey,
         child: SingleChildScrollView(
           child: Container(
             padding: const EdgeInsets.all(20.0),
@@ -50,94 +34,73 @@ class _LoginPageState extends State<LoginPage> {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: TextFormField(
-                    decoration: InputDecoration(
-                        hintText: "Username anda",
-                        labelText: "Username",
-                        icon: const Icon(Icons.people),
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(5.0))),
-                    onChanged: (String? value) {
-                      setState(() {
-                        username = value!;
-                      });
-                    },
-                    onSaved: (String? value) {
-                      setState(() {
-                        username = value!;
-                      });
-                    },
-                    validator: (String? value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Username harus diisi!';
-                      }
-
-                      return null;
-                    },
-                  ),
+                Consumer<UserKeuanganAdminProvider>(
+                  builder: (context, value, child) {
+                    return Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: TextFormField(
+                        enabled: false,
+                        initialValue: value.getBalance().toString(),
+                        decoration: InputDecoration(
+                          labelText: "Uang Tersedia",
+                          icon: const Icon(Icons.monetization_on),
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(5.0)),
+                        ),
+                      ),
+                    );
+                  },
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TextFormField(
+                    keyboardType: const TextInputType.numberWithOptions(
+                        signed: false, decimal: true),
+                    inputFormatters: <TextInputFormatter>[
+                      FilteringTextInputFormatter.allow(
+                          RegExp(r'^\d+\.?\d{0,2}'))
+                    ],
                     decoration: InputDecoration(
-                        hintText: "Password anda",
-                        labelText: "Password",
-                        icon: const Icon(Icons.password),
-                        suffixIcon: IconButton(
-                          padding: const EdgeInsetsDirectional.only(end: 12.0),
-                          icon: _isObscured
-                              ? const Icon(Icons.visibility)
-                              : const Icon(Icons.visibility_off),
-                          onPressed: () {
-                            setState(() {
-                              _isObscured = !_isObscured;
-                            });
-                          },
-                        ),
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(5.0))),
-                    obscureText: _isObscured,
+                      hintText: "Contoh: 25000.25",
+                      labelText: "Jumlah Penarikan",
+                      icon: const Icon(Icons.money),
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(5.0)),
+                    ),
                     onChanged: (String? value) {
                       setState(() {
-                        password = value!;
+                        double? newNominal = double.tryParse(value!);
+
+                        if (!(newNominal == null)) {
+                          _nominalPenarikan = newNominal;
+                        }
                       });
                     },
                     onSaved: (String? value) {
                       setState(() {
-                        password = value!;
+                        _nominalPenarikan = double.parse(value!);
                       });
                     },
                     validator: (String? value) {
                       if (value == null || value.isEmpty) {
-                        return 'Password harus diisi!';
+                        return 'Nominal tidak boleh kosong!';
+                      } else if (double.tryParse(value) == null) {
+                        return 'Nominal tidak valid!';
+                      } else if (((double.parse(value) / 0.01) % 1) != 0) { // TODO handler floating point menyebalkan
+                        return 'Nominal hanya boleh mengandung dua angka di belakang koma!';
                       }
-
                       return null;
                     },
                   ),
                 ),
                 TextButton(
                   onPressed: () async {
-                    if (_loginPageFormKey.currentState!.validate()) {
-                      // TODO CircularProgessIndicator
-                      final response = await requester.login(
-                          "https://e-waste-bank.up.railway.app/auth/login/", {
-                        'username': username,
-                        'password': password,
-                      });
+                    if (_userCreateCashoutsPageKey.currentState!.validate()) {
+                      final response = await requester.post(
+                          "https://e-waste-bank.up.railway.app/keuangan/user/create-cashout-api/",
+                          {'amount': _nominalPenarikan.toString()});
 
-                      // TODO text formatting di dialog berhasil dan gagal
-                      if (requester.loggedIn) {
-                        userProvider.login(username, response['role']);
-                        userKeuanganAdminProvider.login(
-                            username, response['role']);
-                        // ignore: use_build_context_synchronously
-                        if (response['role'] == "user") {
-                          // ignore: use_build_context_synchronously
-                          userKeuanganAdminProvider.fetchBalance(context);
-                        }
+                      if (response['status']) {
                         showDialog(
                             context: context,
                             builder: ((context) {
@@ -153,7 +116,7 @@ class _LoginPageState extends State<LoginPage> {
                                   children: <Widget>[
                                     const Center(
                                       child: Text(
-                                        "Login berhasil!",
+                                        "Request penarikan berhasil!",
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold),
                                       ),
@@ -163,11 +126,7 @@ class _LoginPageState extends State<LoginPage> {
                                       onPressed: () {
                                         // pop untuk menutup dialog box
                                         Navigator.pop(context);
-                                        Navigator.pushReplacement(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    const AboutUsPage()));
+                                        Navigator.pop(context);
                                       },
                                       child: const Text(
                                         'OK',
@@ -177,7 +136,9 @@ class _LoginPageState extends State<LoginPage> {
                                   ],
                                 ),
                               );
-                            }));
+                            }
+                          )
+                        );
                       } else {
                         showDialog(
                             context: context,
@@ -194,7 +155,7 @@ class _LoginPageState extends State<LoginPage> {
                                   children: <Widget>[
                                     Center(
                                       child: Text(
-                                        "Login gagal! ${response['message']}",
+                                        "Request penarikan gagal: ${response['message']}",
                                         style: const TextStyle(
                                             fontWeight: FontWeight.bold),
                                       ),
@@ -213,7 +174,9 @@ class _LoginPageState extends State<LoginPage> {
                                   ],
                                 ),
                               );
-                            }));
+                            }
+                          )
+                        );
                       }
                     }
                   },
@@ -221,7 +184,7 @@ class _LoginPageState extends State<LoginPage> {
                     backgroundColor: MaterialStateProperty.all(Colors.blue),
                   ),
                   child: const Text(
-                    "Login",
+                    "Request",
                     style: TextStyle(color: Colors.white),
                   ),
                 ),

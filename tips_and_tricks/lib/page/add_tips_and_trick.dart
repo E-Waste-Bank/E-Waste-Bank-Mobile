@@ -2,7 +2,6 @@ import 'package:tips_and_tricks/util/add_tips_and_trick.dart';
 import 'package:flutter/material.dart';
 import 'package:tips_and_tricks/model/TipsAndTrick.dart';
 import 'package:e_waste_bank_mobile/drawer.dart';
-import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:e_waste_bank_mobile/authentication/user_provider.dart';
 

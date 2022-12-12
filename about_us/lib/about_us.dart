@@ -7,7 +7,7 @@ class AboutUsPage extends StatefulWidget {
   const AboutUsPage({Key? key}) : super(key: key);
 
   @override
-  _AboutUsPageState createState() => _AboutUsPageState();
+  State<AboutUsPage> createState() => _AboutUsPageState();
 }
 
 class _AboutUsPageState extends State<AboutUsPage> {
@@ -33,7 +33,7 @@ class _AboutUsPageState extends State<AboutUsPage> {
                     alignment: Alignment.center,
                     child: Column(
                       children: [
-                        Text(
+                        const Text(
                           "Get To Know Us!",
                           textAlign: TextAlign.center,
                           style: TextStyle(
@@ -41,14 +41,14 @@ class _AboutUsPageState extends State<AboutUsPage> {
                             fontSize: 30,
                           ),
                         ),
-                        Text(
+                        const Text(
                           "Kami hadir untuk memudahkan masyarakat untuk mengumpulkan dan mengelola barang elektronik yang sudah tidak layak pakai. Melalui aplikasi ini, masyarakat dapat mendapatkan uang melalui menjual barang elektronik yang sudah tidak layak pakai, yang nantinya akan dijemput oleh kami. Selain itu, kami memberikan informasi tips dan tricks mengenai pengelolaan E Waste.",
                           textAlign: TextAlign.justify,
                           style: TextStyle(
                             fontSize: 20,
                           ),
                         ),
-                        Text(
+                        const Text(
                           "What People Say About Us?",
                           textAlign: TextAlign.center,
                           style: TextStyle(

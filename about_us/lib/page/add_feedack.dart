@@ -1,6 +1,10 @@
+
 import 'package:flutter/material.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:about_us/page/list_feedback.dart';
 import 'package:e_waste_bank_mobile/drawer.dart';
+import 'package:provider/provider.dart';
+
 
 class AddFeedbackPage extends StatefulWidget {
   const AddFeedbackPage({super.key});
@@ -12,14 +16,14 @@ class AddFeedbackPage extends StatefulWidget {
 class _AddFeedbackPageState extends State<AddFeedbackPage> {
   final _formKey = GlobalKey<FormState>();
   String _nama= "";
-  DateTime now = DateTime.now();
   String _feedback = "";
 
   @override
   Widget build(BuildContext context) {
+    final request = context.watch<CookieRequest>();
     return Scaffold(
       appBar: AppBar(
-        title: Text('Add Your Feedback'),
+        title: const Text('Add Your Feedback'),
       ),
       // Menambahkan drawer menu
       drawer: const MyDrawer(),
@@ -32,17 +36,14 @@ class _AddFeedbackPageState extends State<AddFeedbackPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Padding(
-                  // Menggunakan padding sebesar 8 pixels
                   padding: const EdgeInsets.all(8.0),
                   child: TextFormField(
                     decoration: InputDecoration(
                       labelText: "Nama",
-                      // Menambahkan circular border agar lebih rapi
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(5.0),
                       ),
                     ),
-                    // Menambahkan behavior saat nama diketik
                     onChanged: (String? value) {
                       setState(() {
                         _nama = value!;
@@ -99,36 +100,19 @@ class _AddFeedbackPageState extends State<AddFeedbackPage> {
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all(Colors.blue),
                   ),
-                  onPressed: () {
+                  onPressed: () async {
                     if (_formKey.currentState!.validate()) {
-                      DataFeedback.listNama.add(_nama);
-                      DataFeedback.listTanggal.add(now);
-                      DataFeedback.listFeedback.add(_feedback);
-                      showDialog(
-                        context: context,
-                        builder: (context) {
-                          return Dialog(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            elevation: 15,
-                            child: ListView(
-                              padding: const EdgeInsets.only(top: 20, bottom: 20),
-                              shrinkWrap: true,
-                              children: <Widget>[
-                                const Center(child: Text('Data Berhasil Ditambahkan')),
-                                const SizedBox(height: 20),
-                                TextButton(
-                                  onPressed: () {
-                                    Navigator.pop(context);
-                                  },
-                                  child: const Text('Kembali'),
-                                ),
-                              ],
-                            ),
-                            
-                          );
-                        },
+                      // ignore: unused_local_variable
+                      final response = await request.post(
+                        'https://e-waste-bank.up.railway.app/about-us/add-feedback-flutter/', {
+                        'name': _nama,
+                        'your_feedback':_feedback
+                        }
+                      );
+                      // ignore: use_build_context_synchronously
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(builder: (context) => const ListFeedbackPage()),
                       );
                     }
                   },
