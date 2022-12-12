@@ -23,6 +23,8 @@ class _AdminListCashoutsPageState extends State<AdminListCashoutsPage> {
     fetchedCashouts = fetchAdminCashout(context);
   }
 
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -83,6 +85,8 @@ class _AdminListCashoutsPageState extends State<AdminListCashoutsPage> {
                                 ),
                                 // trailing: ,
                                 onTap: () {
+                                  checkboxValue = snapshot.data![index]
+                                      .fields.approved;
                                   showDialog(
                                     context: context,
                                     builder: (_) {
@@ -93,30 +97,23 @@ class _AdminListCashoutsPageState extends State<AdminListCashoutsPage> {
                                       return AlertDialog(
                                         title: const Text('Cashout Approval'),
                                         content: SingleChildScrollView(
-                                            child: Form(
-                                                key: _formKey,
-                                                child: Column(children: [
-                                                  CheckboxListTile(
-                                                    title: const Text(
-                                                        'Setujui request?'),
-                                                    enabled: true,
-                                                    value: checkboxValue =
-                                                        snapshot.data![index]
-                                                            .fields.approved,
-                                                    onChanged: (val) {
-                                                      if (checkboxValue ==
-                                                          false) {
-                                                        setState(() {
-                                                          checkboxValue = true;
-                                                        });
-                                                      } else if (checkboxValue ==
-                                                          true) {
-                                                        setState(() {
-                                                          checkboxValue = false;
-                                                        });
-                                                      }
-                                                    },
-                                                    activeColor: Colors.blue,
+                                          child: FormField<bool>(
+                                            key: _formKey,
+                                            builder: (state) {
+                                              return Column(
+                                                children: <Widget>[
+                                                  Row(
+                                                    children: <Widget>[
+                                                      Checkbox(
+                                                          value: checkboxValue,
+                                                          onChanged: (value) {
+                                                            setState(() {
+                                                              checkboxValue = value;
+                                                              state.didChange(value);
+                                                            });
+                                                          }),
+                                                      const Text('Setujui request?'),
+                                                    ],
                                                   ),
                                                   Row(
                                                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -136,8 +133,11 @@ class _AdminListCashoutsPageState extends State<AdminListCashoutsPage> {
                                                       ),
                                                     ],
                                                   ),
-
-                                                ]))),
+                                                ],
+                                              );
+                                            },
+                                          ),
+                                        ),
                                       );
                                     },
                                   );
