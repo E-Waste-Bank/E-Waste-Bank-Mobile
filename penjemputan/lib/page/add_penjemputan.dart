@@ -1,339 +1,251 @@
-import 'package:tips_and_tricks/util/add_tips_and_trick.dart';
 import 'package:flutter/material.dart';
-import 'package:tips_and_tricks/model/TipsAndTrick.dart';
 import 'package:e_waste_bank_mobile/drawer.dart';
-import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import 'package:e_waste_bank_mobile/authentication/user_provider.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
 
-class AddTipsAndTrickPage extends StatefulWidget {
-  const AddTipsAndTrickPage({super.key});
+class AddPenjemputan extends StatefulWidget {
+  const AddPenjemputan({super.key});
 
   @override
-  State<AddTipsAndTrickPage> createState() => _AddTipsAndTrickPage();
+  State<AddPenjemputan> createState() => _AddPenjemputan();
 }
 
-class _AddTipsAndTrickPage extends State<AddTipsAndTrickPage> {
+class _AddPenjemputan extends State<AddPenjemputan> {
   final _formKey = GlobalKey<FormState>();
-  final _clearTitle = TextEditingController();
-  final _clearSource = TextEditingController();
-  final _clearImageUrl = TextEditingController();
-  final _clearArticleUrl = TextEditingController();
-  final _clearBriefDescription = TextEditingController();
-  String title = "";
-  String source = "";
-  // ignore: non_constant_identifier_names
-  DateTime? _publised_date;
-  // ignore: non_constant_identifier_names
-  String image_url = "";
-  // ignore: non_constant_identifier_names
-  String article_url = "";
-  // ignore: non_constant_identifier_names
-  String brief_description = "";
+  final _clearJenisSampah = TextEditingController();
+  final _clearAlamat = TextEditingController();
+  final _clearBeratSampah = TextEditingController();
+  String jenisSampah = "";
+  String alamat = "";
+  String beratSampah = "";
+  DateTime? tanggalJemput;
+  TimeOfDay? waktuJemput;
 
   @override
   Widget build(BuildContext context) {
+    CookieRequest requester = context.watch<CookieRequest>();
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('Add Tips & Tricks Article'),
+      appBar: AppBar(
+        title: const Text('Add penjemputan'),
+      ),
+      drawer: const MyDrawer(),
+      body: SingleChildScrollView(
+        child: Form(
+          key: _formKey,
+          child: Container(
+            padding: const EdgeInsets.all(20.0),
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      TextFormField(
+                          decoration: InputDecoration(
+                            hintText: "Sampah Rumah Tangga",
+                            labelText: "Jenis Sampah",
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(5.0),
+                            ),
+                          ),
+                          controller: _clearJenisSampah,
+                          onChanged: (String? value) {
+                            setState(() {
+                              jenisSampah = value!;
+                            });
+                          },
+                          onSaved: (String? value) {
+                            setState(() {
+                              jenisSampah = value!;
+                            });
+                          },
+                          validator: (String? value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Jenis sampah tidak boleh kosong!';
+                            }
+                            return null;
+                          }),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      TextFormField(
+                          decoration: InputDecoration(
+                            hintText: "Fasilkom Gedung Baru",
+                            labelText: "Alamat",
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(5.0),
+                            ),
+                          ),
+                          controller: _clearAlamat,
+                          onChanged: (String? value) {
+                            setState(() {
+                              alamat = value!;
+                            });
+                          },
+                          onSaved: (String? value) {
+                            setState(() {
+                              alamat = value!;
+                            });
+                          },
+                          validator: (String? value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Alamat tidak boleh kosong!';
+                            }
+                            return null;
+                          }),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      TextFormField(
+                          keyboardType: TextInputType.number,
+                          decoration: InputDecoration(
+                            hintText: "Contoh: 10",
+                            labelText: "Berat Sampah",
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(5.0),
+                            ),
+                          ),
+                          controller: _clearBeratSampah,
+                          onChanged: (String? value) {
+                            setState(() {
+                              beratSampah = value!;
+                            });
+                          },
+                          onSaved: (String? value) {
+                            setState(() {
+                              beratSampah = value!;
+                            });
+                          },
+                          validator: (String? value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Berat sampah tidak boleh kosong!';
+                            }
+                            if (int.tryParse(value) == null) {
+                              return 'Berat sampah harus berupa angka!';
+                            }
+                            return null;
+                          }),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      TextButton(
+                        child: Text(tanggalJemput == null
+                            ? "pilih tanggal jemput"
+                            : "${tanggalJemput!.day}/${tanggalJemput!.month}/${tanggalJemput!.year}"),
+                        // Event Handling for Button
+                        onPressed: () {
+                          showDatePicker(
+                            context: context,
+                            initialDate: DateTime.now(),
+                            firstDate: DateTime(2000),
+                            lastDate: DateTime(2099),
+                          ).then((date) {
+                            // Tambahkan setState dan panggil variabel _dateTime.
+                            setState(() {
+                              tanggalJemput = date;
+                            });
+                          });
+                        },
+                      ),
+                      TextButton(
+                        child: Text(waktuJemput == null
+                            ? "pilih waktu jemput"
+                            : "${waktuJemput!.hour}:${waktuJemput!.minute}"),
+                        // Event Handling for Button
+                        onPressed: () {
+                          showTimePicker(
+                            context: context,
+                            initialTime: TimeOfDay.now(),
+                          ).then((time) {
+                            // Tambahkan setState dan panggil variabel _dateTime.
+                            setState(() {
+                              waktuJemput = time;
+                            });
+                          });
+                        },
+                      ),
+                      TextButton(
+                        onPressed: () async {
+                          if (_formKey.currentState!.validate()) {
+                            final response = await requester.post(
+                              "https://e-waste-bank.up.railway.app/penjemputan/add-mobile/",
+                              {
+                                "jenis_sampah": jenisSampah,
+                                "alamat": alamat,
+                                "berat_sampah": beratSampah,
+                                "tanggal_jemput": tanggalJemput!.toString(),
+                                "waktu_jemput":
+                                    waktuJemput!.toString().substring(10, 15),
+                              },
+                            );
+                            if (response['status']) {
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(SnackBar(
+                                backgroundColor: Colors.green,
+                                // ignore: prefer_const_constructors
+                                content: Text(
+                                  "${response['message']}",
+                                  style: const TextStyle(color: Colors.white),
+                                ),
+                                action: SnackBarAction(
+                                  label: 'Close',
+                                  textColor: Colors.white,
+                                  onPressed: () {
+                                    ScaffoldMessenger.of(context)
+                                        .hideCurrentSnackBar();
+                                  },
+                                ),
+                              ));
+                              _clearJenisSampah.clear();
+                              _clearAlamat.clear();
+                              _clearBeratSampah.clear();
+                              setState(() {
+                                jenisSampah = "";
+                                alamat = "";
+                                beratSampah = "";
+                                tanggalJemput = null;
+                                waktuJemput = null;
+                              });
+                            } else {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  backgroundColor: Colors.red,
+                                  // ignore: prefer_const_constructors
+                                  content: Text(
+                                    "${response['message']}",
+                                    style: const TextStyle(color: Colors.red),
+                                  ),
+                                  action: SnackBarAction(
+                                    label: 'Close',
+                                    textColor: Colors.white,
+                                    onPressed: () {
+                                      ScaffoldMessenger.of(context)
+                                          .hideCurrentSnackBar();
+                                    },
+                                  ),
+                                ),
+                              );
+                            }
+                          }
+                        },
+                        style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.all(Colors.blue),
+                        ),
+                        child: const Text(
+                          "submit",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
         ),
-        drawer: const MyDrawer(),
-        body: SingleChildScrollView(
-            child: Form(
-                key: _formKey,
-                child: Container(
-                    padding: const EdgeInsets.all(20.0),
-                    child: Column(
-                        children: [
-                          Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    TextFormField(
-                                        decoration: InputDecoration(
-                                          hintText: "Contoh: Kelebihan dari memakai totebag",
-                                          labelText: "Title",
-                                          border: OutlineInputBorder(
-                                            borderRadius: BorderRadius.circular(
-                                                5.0),
-                                          ),
-                                        ),
-
-                                        controller: _clearTitle,
-
-                                        onChanged: (String? value) {
-                                          setState(() {
-                                            title = value!;
-                                          });
-                                        },
-
-                                        onSaved: (String? value) {
-                                          setState(() {
-                                            title = value!;
-                                          });
-                                        },
-
-                                        validator: (String? value) {
-                                          if (value == null || value.isEmpty) {
-                                            return 'Judul Article tidak boleh kosong!';
-                                          }
-                                          return null;
-                                        }
-                                    ),
-
-                                    const SizedBox(height: 10,),
-
-                                    TextFormField(
-                                        decoration: InputDecoration(
-                                          hintText: "Contoh: Maya",
-                                          labelText: "Article Source/Author",
-                                          border: OutlineInputBorder(
-                                            borderRadius: BorderRadius.circular(
-                                                5.0),
-                                          ),
-                                        ),
-
-                                        controller: _clearSource,
-
-                                        onChanged: (String? value) {
-                                          setState(() {
-                                            source = value!;
-                                          });
-                                        },
-
-                                        onSaved: (String? value) {
-                                          setState(() {
-                                            source = value!;
-                                          });
-                                        },
-
-                                        validator: (String? value) {
-                                          if (value == null || value.isEmpty) {
-                                            return 'Article Source/Author tidak boleh kosong!';
-                                          }
-                                          return null;
-                                        }
-                                    ),
-
-                                    const SizedBox(height: 10,),
-
-                                    TextButton(
-                                      child: Text(_publised_date == null
-                                          ? "Pick a date"
-                                          : "${_publised_date!
-                                          .day}/${_publised_date!
-                                          .month}/${_publised_date!.year}"),
-                                      // Event Handling for Button
-                                      onPressed: () {
-                                        showDatePicker(
-                                          context: context,
-                                          initialDate: DateTime.now(),
-                                          firstDate: DateTime(2000),
-                                          lastDate: DateTime(2099),
-                                        ).then((date) {
-                                          // Tambahkan setState dan panggil variabel _dateTime.
-                                          setState(() {
-                                            _publised_date = date;
-                                          });
-                                        });
-                                      },
-                                    ),
-
-                                    const SizedBox(height: 10,),
-
-                                    TextFormField(
-                                        decoration: InputDecoration(
-                                          hintText: "Contoh: https://www.genevaenvironmentnetwork.org/wp-content/uploads/2020/09/ewaste-aspect-ratio-2000-1200-1024x614.jpg",
-                                          labelText: "Image URL",
-                                          // icon: const Icon(Icons.add_circle),
-                                          border: OutlineInputBorder(
-                                            borderRadius: BorderRadius.circular(
-                                                5.0),
-                                          ),
-                                        ),
-
-                                        controller: _clearImageUrl,
-
-                                        onChanged: (String? value) {
-                                          setState(() {
-                                            image_url = value!;
-                                          });
-                                        },
-
-                                        onSaved: (String? value) {
-                                          setState(() {
-                                            image_url = value!;
-                                          });
-                                        },
-
-                                        validator: (String? value) {
-                                          if (value == null || value.isEmpty) {
-                                            return 'Image URL tidak boleh kosong!';
-                                          }
-                                          return null;
-                                        }
-                                    ),
-
-                                    const SizedBox(height: 10,),
-
-                                    TextFormField(
-                                        decoration: InputDecoration(
-                                          hintText: "Contoh: https://www.theartofsimple.net/10-ways-to-recycle-your-technology-and-manage-e-waste/",
-                                          labelText: "Article URL",
-                                          // icon: const Icon(Icons.add_circle),
-                                          border: OutlineInputBorder(
-                                            borderRadius: BorderRadius.circular(
-                                                5.0),
-                                          ),
-                                        ),
-
-                                        controller: _clearArticleUrl,
-
-                                        onChanged: (String? value) {
-                                          setState(() {
-                                            article_url = value!;
-                                          });
-                                        },
-
-                                        onSaved: (String? value) {
-                                          setState(() {
-                                            article_url = value!;
-                                          });
-                                        },
-
-                                        validator: (String? value) {
-                                          if (value == null || value.isEmpty) {
-                                            return 'Article URL tidak boleh kosong!';
-                                          }
-                                          return null;
-                                        }
-                                    ),
-
-                                    const SizedBox(height: 10,),
-
-                                    TextFormField(
-                                        decoration: InputDecoration(
-                                          hintText: "Contoh: Let's managing e-waste",
-                                          labelText: "Article Brief Description",
-                                          // icon: const Icon(Icons.add_circle),
-                                          border: OutlineInputBorder(
-                                            borderRadius: BorderRadius.circular(
-                                                5.0),
-                                          ),
-                                        ),
-
-                                        controller: _clearBriefDescription,
-
-                                        onChanged: (String? value) {
-                                          setState(() {
-                                            brief_description = value!;
-                                          });
-                                        },
-
-                                        onSaved: (String? value) {
-                                          setState(() {
-                                            brief_description = value!;
-                                          });
-                                        },
-
-                                        validator: (String? value) {
-                                          if (value == null || value.isEmpty) {
-                                            return 'Article Brief Description tidak boleh kosong!';
-                                          }
-                                          return null;
-                                        }
-                                    ),
-
-                                    // const Spacer(),
-                                    const SizedBox(height: 30,),
-
-                                    Align(
-                                      alignment: Alignment.bottomCenter,
-                                      child: TextButton(
-                                        // ignore: sort_child_properties_last
-                                        child: const Text("Submit",
-                                          style: TextStyle(
-                                              color: Colors.white),),
-                                        style: ButtonStyle(
-                                          backgroundColor: MaterialStateProperty
-                                              .all(Colors.blue),
-                                        ),
-                                        onPressed: () {
-                                          final username = context.watch<UserProvider>().getUsername();
-                                          if (_formKey.currentState!
-                                              .validate() &&
-                                              _publised_date != null) {
-                                            String publisedDate = _publised_date
-                                                .toString().substring(0, 10);
-                                            // ignore: unnecessary_new
-                                            TipsAndTrick tipsAndTrick = new TipsAndTrick(
-                                                user: username,
-                                                title: title,
-                                                source: source,
-                                                published_date: publisedDate,
-                                                brief_description: brief_description,
-                                                image_url: image_url,
-                                                article_url: article_url);
-                                            addTipsAndTrick(tipsAndTrick);
-                                            ScaffoldMessenger.of(context)
-                                                .showSnackBar(
-                                                SnackBar(
-                                                  backgroundColor: Colors.green,
-                                                  // ignore: prefer_const_constructors
-                                                  content: Text(
-                                                      "Data berhasil ditambahkan!"),
-                                                  action: SnackBarAction(
-                                                    label: 'Close',
-                                                    textColor: Colors.white,
-                                                    onPressed: () {
-                                                      ScaffoldMessenger.of(
-                                                          context)
-                                                          .hideCurrentSnackBar();
-                                                    },
-                                                  ),
-                                                )
-                                            );
-                                            _clearTitle.clear();
-                                            _clearSource.clear();
-                                            _clearImageUrl.clear();
-                                            _clearArticleUrl.clear();
-                                            _clearBriefDescription.clear();
-
-                                            setState(() {
-                                              _publised_date = null;
-                                            });
-                                          } else {
-                                            ScaffoldMessenger.of(context)
-                                                .showSnackBar(
-                                                SnackBar(
-                                                  backgroundColor: Colors.red,
-                                                  // ignore: prefer_const_constructors
-                                                  content: Text(
-                                                      "Mohon isi data dengan lengkap!"),
-                                                  action: SnackBarAction(
-                                                    label: 'Close',
-                                                    textColor: Colors.white,
-                                                    onPressed: () {
-                                                      ScaffoldMessenger.of(
-                                                          context)
-                                                          .hideCurrentSnackBar();
-                                                    },
-                                                  ),
-                                                )
-                                            );
-                                          }
-                                        },
-                                      ),
-                                    ),
-                                  ]
-                              )
-                          )
-                        ]
-                    )
-                )
-            )
-        )
+      ),
     );
   }
 }
