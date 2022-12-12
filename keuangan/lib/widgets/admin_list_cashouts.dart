@@ -15,7 +15,7 @@ class AdminListCashoutsPage extends StatefulWidget {
 class _AdminListCashoutsPageState extends State<AdminListCashoutsPage> {
   late Future<List<Cashout>> fetchedCashouts;
   final _formKey = GlobalKey<FormState>();
-  bool checkboxValue = false;
+  bool? checkboxValue;
 
   @override
   void initState() {

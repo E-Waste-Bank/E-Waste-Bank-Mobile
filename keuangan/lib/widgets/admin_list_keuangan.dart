@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:keuangan/methods/get_admin_keuangan.dart';
 import 'package:keuangan/models/admin_keuanganadmin_model.dart';
 import 'package:e_waste_bank_mobile/drawer.dart';
@@ -14,6 +15,8 @@ class AdminListKeuanganPage extends StatefulWidget {
 
 class _AdminListKeuanganPageState extends State<AdminListKeuanganPage> {
   late Future<List<KeuanganAdmin>> fetchedKeuangan;
+  final _formKey = GlobalKey<FormState>();
+  int? amount;
 
   @override
   void initState() {
@@ -77,7 +80,104 @@ class _AdminListKeuanganPageState extends State<AdminListKeuanganPage> {
                                 ),
                                 // trailing: ,
                                 onTap: () {
-                                  
+                                  showDialog(
+                                    context: context,
+                                    builder: (_) {
+                                      var emailController =
+                                          TextEditingController();
+                                      var messageController =
+                                          TextEditingController();
+                                      return AlertDialog(
+                                        title: const Text('Add Amount'),
+                                        content: SingleChildScrollView(
+                                            child: Form(
+                                                key: _formKey,
+                                                child: Column(children: [
+                                                  Padding(
+                                                      // Menggunakan padding sebesar 8 pixels
+                                                      padding:
+                                                          const EdgeInsets.all(
+                                                              8.0),
+                                                      child: TextFormField(
+                                                        keyboardType:
+                                                            TextInputType
+                                                                .number,
+                                                        inputFormatters: <
+                                                            TextInputFormatter>[
+                                                          FilteringTextInputFormatter
+                                                              .digitsOnly
+                                                        ],
+                                                        decoration:
+                                                            InputDecoration(
+                                                          hintText:
+                                                              "Contoh: 1000",
+                                                          labelText: "Nominal",
+
+                                                          // Menambahkan circular border agar lebih rapi
+                                                          border:
+                                                              OutlineInputBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        5.0),
+                                                          ),
+                                                        ),
+                                                        // Menambahkan behavior saat nama diketik
+                                                        onChanged:
+                                                            (String? value) {
+                                                          setState(() {
+                                                            amount = int.parse(
+                                                                value!);
+                                                          });
+                                                        },
+                                                        // Menambahkan behavior saat data disimpan
+                                                        onSaved:
+                                                            (String? value) {
+                                                          setState(() {
+                                                            amount = int.parse(
+                                                                value!);
+                                                          });
+                                                        },
+                                                        // Validator sebagai validasi form
+                                                        validator:
+                                                            (String? value) {
+                                                          if (value == null ||
+                                                              value.isEmpty) {
+                                                            return 'Nominal tidak boleh kosong!';
+                                                          }
+                                                          return null;
+                                                        },
+                                                      )),
+                                                  Row(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .center,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      TextButton(
+                                                        onPressed: () =>
+                                                            Navigator.pop(
+                                                                context),
+                                                        child: const Text(
+                                                            'Cancel'),
+                                                      ),
+                                                      TextButton(
+                                                        onPressed: () {
+                                                          // TODO submit
+                                                          Navigator.pop(
+                                                              context);
+                                                        },
+                                                        child:
+                                                            const Text('Send'),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ]))),
+                                      );
+                                    },
+                                  );
                                 },
                               ),
                             ],
