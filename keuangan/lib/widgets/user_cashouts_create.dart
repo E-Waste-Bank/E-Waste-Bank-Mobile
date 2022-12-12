@@ -84,7 +84,7 @@ class _UserCreateCashoutsPageState extends State<UserCreateCashoutsPage> {
                           "https://e-waste-bank.up.railway.app/keuangan/user/create-cashout-api/",
                           {'amount': _nominalPenarikan.toString()});
 
-                      if (response['status'] == true) {
+                      if (response['status']) {
                         showDialog(
                             context: context,
                             builder: ((context) {
@@ -137,10 +137,10 @@ class _UserCreateCashoutsPageState extends State<UserCreateCashoutsPage> {
                                       top: 20, bottom: 20),
                                   shrinkWrap: true,
                                   children: <Widget>[
-                                    const Center(
+                                    Center(
                                       child: Text(
-                                        "Request penarikan berhasil!",
-                                        style: TextStyle(
+                                        "Request penarikan gagal: ${response['message']}",
+                                        style: const TextStyle(
                                             fontWeight: FontWeight.bold),
                                       ),
                                     ),
