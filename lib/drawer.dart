@@ -34,6 +34,12 @@ class _MyDrawerState extends State<MyDrawer> {
                 MaterialPageRoute(builder: (context) => const MyHomePage()));
           }),
       ListTile(
+          title: const Text('About Us'),
+          onTap: () {
+            Navigator.pushReplacement(context,
+                MaterialPageRoute(builder: (context) => const AboutUsPage()));
+          }),
+      ListTile(
           title: const Text('Tips And Tricks'),
           onTap: () {
             Navigator.pushReplacement(
