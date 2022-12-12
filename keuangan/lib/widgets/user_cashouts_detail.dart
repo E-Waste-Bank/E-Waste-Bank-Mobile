@@ -11,7 +11,7 @@ class CashoutDetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const double largeHeight = 20;
+    const double largeHeight = 5;
     const double smallHeight = 4;
 
     // final DateFormat dateFormat = DateFormat('LLL dd, yyyy');
@@ -26,47 +26,52 @@ class CashoutDetailPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Expanded(
-                child: Text(
-                  "Penarikan (ID: ${cashouts.pk})",
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                      fontSize: 28, fontWeight: FontWeight.bold),
-                ),
+              Row(
+                children: <Widget>[
+                  Expanded(
+                    flex: 1,
+                    child: Text(
+                      "Penarikan (ID: ${cashouts.pk})",
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                          fontSize: 32, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ],
               ),
-              const SizedBox(height: largeHeight),
+              const SizedBox(height: 50),
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  const Text("Amount: ",
+                  const Text("Nominal: ",
                       style:
-                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                          TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
                   Expanded(
                     child: Text(
                       "${cashouts.fields.amount}",
-                      style: const TextStyle(fontSize: 16),
+                      style: const TextStyle(fontSize: 22),
                     ),
                   )
                 ],
               ),
-              const SizedBox(height: smallHeight),
+              // const SizedBox(height: smallHeight),
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   const Text("Disetujui: ",
                       style:
-                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                          TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
                   Expanded(
                     child: Text(
                       cashouts.fields.approved ? "Ya" : "Tidak",
-                      style: const TextStyle(fontSize: 16),
+                      style: const TextStyle(fontSize: 22),
                     ),
                   )
                 ],
               ),
-              const Spacer(),
+              const Spacer(flex: 2,),
               Container(
                   margin:
                       const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
