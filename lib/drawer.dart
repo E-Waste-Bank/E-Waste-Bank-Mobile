@@ -6,7 +6,6 @@ import 'package:provider/provider.dart';
 import 'package:e_waste_bank_mobile/authentication/user_provider.dart';
 import 'package:e_waste_bank_mobile/main.dart';
 import 'package:e_waste_bank_mobile/authentication/login_page.dart';
-import 'package:e_waste_bank_mobile/authentication/register.page.dart';
 import 'package:tips_and_tricks/page/list_tips_and_trick.dart';
 import 'package:tips_and_tricks/page/add_tips_and_trick.dart';
 import 'package:keuangan/widgets/admin_list_cashouts.dart';
@@ -90,21 +89,10 @@ class _MyDrawerState extends State<MyDrawer> {
       Visibility(
         visible: !userProvider.isAuthenticated(),
         child: ListTile(
-            title: const Text('Login COBA'),
+            title: const Text('Login'),
             onTap: () {
               Navigator.pushReplacement(context,
                   MaterialPageRoute(builder: (context) => const LoginPage()));
-            }),
-      ),
-      Visibility(
-        visible: !userProvider.isAuthenticated(),
-        child: ListTile(
-            title: const Text('Register'),
-            onTap: () {
-              Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const RegisterPage()));
             }),
       ),
       Visibility(

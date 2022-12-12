@@ -139,10 +139,9 @@ class _AdminListCashoutsPageState extends State<AdminListCashoutsPage> {
                                                                 context,
                                                                 MaterialPageRoute(
                                                                   builder: (context) => const AdminListCashoutsPage(),
-                                                                )).then((value){
-                                                                  setState(() {
-                                                                  });
-                                                            });
+                                                                )).then((value) {
+                                                            setState(() {});
+                                                          });
                                                         },
                                                         child: const Text('Send'),
                                                       ),
