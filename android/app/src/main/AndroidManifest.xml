@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="org.PBPF07.e_waste_bank_mobile">
+    package="com.example.e_waste_bank_mobile">
     <queries>
         <!-- If your app checks for SMS support -->
         <intent>
@@ -14,7 +14,7 @@
     </queries>
 
     <application
-        android:label="E-Waste Bank"
+        android:label="e_waste_bank_mobile"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
