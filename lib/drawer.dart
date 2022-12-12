@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:keuangan/providers/user_keuanganadmin_provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:penjemputan/page/list_penjemputan.dart';
 import 'package:provider/provider.dart';
@@ -46,8 +47,10 @@ class _MyDrawerState extends State<MyDrawer> {
         child: ListTile(
             title: const Text('penjemputan'),
             onTap: () {
-              Navigator.pushReplacement(context,
-                  MaterialPageRoute(builder: (context) => const PenjemputanPage()));
+              Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const PenjemputanPage()));
             }),
       ),
       Visibility(
@@ -66,8 +69,10 @@ class _MyDrawerState extends State<MyDrawer> {
         child: ListTile(
             title: const Text('Lihat Cashouts'),
             onTap: () {
-              Navigator.pushReplacement(context,
-                  MaterialPageRoute(builder: (context) => const UserListCashoutsPage()));
+              Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const UserListCashoutsPage()));
             }),
       ),
       Visibility(
@@ -100,6 +105,9 @@ class _MyDrawerState extends State<MyDrawer> {
 
               // ignore: use_build_context_synchronously
               Provider.of<UserProvider>(context, listen: false).logout();
+
+              Provider.of<UserKeuanganAdminProvider>(context, listen: false)
+                  .logout();
 
               // ignore: use_build_context_synchronously
               Navigator.pushReplacement(context,

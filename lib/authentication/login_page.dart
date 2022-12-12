@@ -1,6 +1,7 @@
 import 'package:e_waste_bank_mobile/authentication/user_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:keuangan/models/admin_cashout_model.dart';
+import 'package:keuangan/providers/user_keuanganadmin_provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 
@@ -31,6 +32,8 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     CookieRequest requester = context.watch<CookieRequest>();
     UserProvider userProvider = context.watch<UserProvider>();
+    UserKeuanganAdminProvider userKeuanganAdminProvider =
+        Provider.of<UserKeuanganAdminProvider>(context, listen: false);
 
     return Scaffold(
       appBar: AppBar(
@@ -118,8 +121,8 @@ class _LoginPageState extends State<LoginPage> {
                   onPressed: () async {
                     if (_loginPageFormKey.currentState!.validate()) {
                       // TODO CircularProgessIndicator
-                      final response = await requester
-                          .login("https://e-waste-bank.up.railway.app/auth/login/", {
+                      final response = await requester.login(
+                          "https://e-waste-bank.up.railway.app/auth/login/", {
                         'username': username,
                         'password': password,
                       });
@@ -127,6 +130,8 @@ class _LoginPageState extends State<LoginPage> {
                       // TODO text formatting di dialog berhasil dan gagal
                       if (requester.loggedIn) {
                         userProvider.login(username, response['role']);
+                        userKeuanganAdminProvider.login(
+                            username, response['role']);
                         showDialog(
                             context: context,
                             builder: ((context) {
@@ -202,9 +207,7 @@ class _LoginPageState extends State<LoginPage> {
                                   ],
                                 ),
                               );
-                            }
-                          )
-                        );
+                            }));
                       }
                     }
                   },
