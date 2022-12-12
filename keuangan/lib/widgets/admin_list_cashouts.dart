@@ -124,6 +124,7 @@ class _AdminListCashoutsPageState extends State<AdminListCashoutsPage> {
                                                       ),
                                                       TextButton(
                                                         onPressed: () async{
+                                                            // ignore: unused_local_variable
                                                             final response =
                                                             await requester
                                                                 .post(

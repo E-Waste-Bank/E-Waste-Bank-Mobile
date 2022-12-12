@@ -1,4 +1,3 @@
-import 'package:about_us/page/add_feedack.dart';
 import 'package:flutter/material.dart';
 import 'package:about_us/model/feedback.dart';
 import 'dart:convert';
@@ -9,7 +8,7 @@ class ListFeedbackPage extends StatefulWidget {
   const ListFeedbackPage({Key? key}) : super(key: key);
 
   @override
-  _ListFeedbackPageState createState() => _ListFeedbackPageState();
+  State<ListFeedbackPage> createState() => _ListFeedbackPageState();
 }
 
 class _ListFeedbackPageState extends State<ListFeedbackPage> {
@@ -37,6 +36,7 @@ class _ListFeedbackPageState extends State<ListFeedbackPage> {
     return listFeedback;
   }
 
+  @override
   Widget build(BuildContext context) {
 
     return Scaffold(
@@ -70,7 +70,7 @@ class _ListFeedbackPageState extends State<ListFeedbackPage> {
                       child: Card(
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
-                          side: BorderSide(color: Colors.blue)
+                          side: const BorderSide(color: Colors.blue)
                         ),
                         child: Container(
                           padding: const EdgeInsets.symmetric(horizontal: 3, vertical: 3),
@@ -79,7 +79,7 @@ class _ListFeedbackPageState extends State<ListFeedbackPage> {
                               "${snapshot.data![index].fields.yourFeedback}"
                             ),
                             subtitle: Padding(
-                              padding: EdgeInsets.all(5.0),
+                              padding: const EdgeInsets.all(5.0),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [

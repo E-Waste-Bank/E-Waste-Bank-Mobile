@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import 'package:keuangan/models/user_cashout.dart';
-import 'package:e_waste_bank_mobile/drawer.dart';
 
 class CashoutDetailPage extends StatelessWidget {
   const CashoutDetailPage({super.key, required this.cashouts});

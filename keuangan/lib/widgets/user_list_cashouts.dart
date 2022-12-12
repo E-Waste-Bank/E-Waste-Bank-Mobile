@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:keuangan/models/user_keuanganadmin.dart';
 import 'package:keuangan/providers/user_keuanganadmin_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
