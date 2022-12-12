@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:keuangan/models/user_keuanganadmin.dart';
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:keuangan/models/user_cashout.dart';
@@ -16,6 +17,7 @@ class UserListCashoutsPage extends StatefulWidget {
 
 class _UserListCashoutsPageState extends State<UserListCashoutsPage> {
   late Future<List<Cashouts>> fetchedCashouts;
+  late Future<KeuanganAdmin> fetchedKeuanganAdmin;
 
   Future<List<Cashouts>> fetchCashouts() async {
     final requester = Provider.of<CookieRequest>(context, listen: false);
@@ -32,10 +34,19 @@ class _UserListCashoutsPageState extends State<UserListCashoutsPage> {
     return listCashouts;
   }
 
+  Future<KeuanganAdmin> fetchUserKeuanganAdmin() async {
+    final requester = Provider.of<CookieRequest>(context, listen: false);
+    var data = await requester
+        .get("https://e-waste-bank.up.railway.app/keuangan/json/user-api/");
+
+    return KeuanganAdmin.fromJson(data[0]);
+  }
+
   @override
   void initState() {
     super.initState();
     fetchedCashouts = fetchCashouts();
+    fetchedKeuanganAdmin = fetchUserKeuanganAdmin();
   }
 
   @override
@@ -130,6 +141,7 @@ class _UserListCashoutsPageState extends State<UserListCashoutsPage> {
               .then((_) {
             setState(() {
               fetchedCashouts = fetchCashouts();
+              fetchedKeuanganAdmin = fetchUserKeuanganAdmin();
             });
           });
         },
